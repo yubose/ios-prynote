@@ -1,0 +1,16 @@
+${PODS_ROOT}/Target Support Files/Pods-Prynote/Pods-Prynote-frameworks.sh
+${BUILT_PRODUCTS_DIR}/AiTmedSDK/AiTmedSDK.framework
+${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
+${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework
+${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework
+${BUILT_PRODUCTS_DIR}/PhoneNumberKit/PhoneNumberKit.framework
+${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework
+${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework
+${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework
+${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework
+${BUILT_PRODUCTS_DIR}/Sodium/Sodium.framework
+${BUILT_PRODUCTS_DIR}/SwiftGRPC/SwiftGRPC.framework
+${BUILT_PRODUCTS_DIR}/SwiftProtobuf/SwiftProtobuf.framework
+${BUILT_PRODUCTS_DIR}/TYTextField/TYTextField.framework
+${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework
+${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework

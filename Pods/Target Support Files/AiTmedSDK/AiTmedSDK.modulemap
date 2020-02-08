@@ -1,0 +1,6 @@
+framework module AiTmedSDK {
+  umbrella header "AiTmedSDK-umbrella.h"
+
+  export *
+  module * { export * }
+}

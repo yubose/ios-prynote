@@ -1,0 +1,867 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		79BDAD15A219B5237712B581 /* Pods_Prynote.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58C9EF9F630BBAFC251E767C /* Pods_Prynote.framework */; };
+		8E0CFFF623EE4138004692C2 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0CFFF523EE4138004692C2 /* R.generated.swift */; };
+		8E23220223EC97DF00E65B2A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23220123EC97DF00E65B2A /* AppDelegate.swift */; };
+		8E23220423EC97DF00E65B2A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23220323EC97DF00E65B2A /* ViewController.swift */; };
+		8E23220723EC97DF00E65B2A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E23220523EC97DF00E65B2A /* Main.storyboard */; };
+		8E23220923EC97E400E65B2A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E23220823EC97E400E65B2A /* Assets.xcassets */; };
+		8E23220C23EC97E400E65B2A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E23220A23EC97E400E65B2A /* LaunchScreen.storyboard */; };
+		8E23227023EC9F5D00E65B2A /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23221423EC9F5C00E65B2A /* Storage.swift */; };
+		8E23227123EC9F5E00E65B2A /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23221523EC9F5C00E65B2A /* Constant.swift */; };
+		8E23227223EC9F5E00E65B2A /* PrynoteError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23221623EC9F5C00E65B2A /* PrynoteError.swift */; };
+		8E23227323EC9F5E00E65B2A /* NotesGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23221723EC9F5C00E65B2A /* NotesGroup.swift */; };
+		8E23227423EC9F5E00E65B2A /* StateCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23221823EC9F5C00E65B2A /* StateCoordinator.swift */; };
+		8E23227523EC9F5E00E65B2A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23221923EC9F5C00E65B2A /* User.swift */; };
+		8E23227623EC9F5E00E65B2A /* Notebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23221A23EC9F5C00E65B2A /* Notebook.swift */; };
+		8E23227723EC9F5E00E65B2A /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23221B23EC9F5C00E65B2A /* Note.swift */; };
+		8E23227823EC9F5E00E65B2A /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23221D23EC9F5C00E65B2A /* Functions.swift */; };
+		8E23227923EC9F5E00E65B2A /* util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23221E23EC9F5C00E65B2A /* util.swift */; };
+		8E23227A23EC9F5E00E65B2A /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23221F23EC9F5C00E65B2A /* Keyboard.swift */; };
+		8E23227B23EC9F5E00E65B2A /* PhoneNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23222123EC9F5D00E65B2A /* PhoneNumber.swift */; };
+		8E23227D23EC9F5E00E65B2A /* NSNotification.Name+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23222323EC9F5D00E65B2A /* NSNotification.Name+.swift */; };
+		8E23227E23EC9F5E00E65B2A /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23222523EC9F5D00E65B2A /* UIView.swift */; };
+		8E23227F23EC9F5E00E65B2A /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23222623EC9F5D00E65B2A /* UIColor.swift */; };
+		8E23228023EC9F5E00E65B2A /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23222723EC9F5D00E65B2A /* Notification.swift */; };
+		8E23228123EC9F5E00E65B2A /* TY.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23222823EC9F5D00E65B2A /* TY.swift */; };
+		8E23228223EC9F5E00E65B2A /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23222923EC9F5D00E65B2A /* UIFont.swift */; };
+		8E23228323EC9F5E00E65B2A /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23222A23EC9F5D00E65B2A /* UIView+.swift */; };
+		8E23228423EC9F5E00E65B2A /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23222B23EC9F5D00E65B2A /* UIViewController+.swift */; };
+		8E23228523EC9F5E00E65B2A /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23222C23EC9F5D00E65B2A /* UIButton+.swift */; };
+		8E23228623EC9F5E00E65B2A /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23222D23EC9F5D00E65B2A /* String.swift */; };
+		8E23228723EC9F5E00E65B2A /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23222E23EC9F5D00E65B2A /* UIImage.swift */; };
+		8E23228823EC9F5E00E65B2A /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23222F23EC9F5D00E65B2A /* Double.swift */; };
+		8E23228923EC9F5E00E65B2A /* UIViewController+froze.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23223023EC9F5D00E65B2A /* UIViewController+froze.swift */; };
+		8E23228A23EC9F5E00E65B2A /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23223123EC9F5D00E65B2A /* Date+.swift */; };
+		8E23228B23EC9F5E00E65B2A /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23223223EC9F5D00E65B2A /* UINavigationController.swift */; };
+		8E23228C23EC9F5E00E65B2A /* NoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23223523EC9F5D00E65B2A /* NoteCell.swift */; };
+		8E23228D23EC9F5E00E65B2A /* NoteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E23223623EC9F5D00E65B2A /* NoteCell.xib */; };
+		8E23228E23EC9F5E00E65B2A /* NotebookCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E23223723EC9F5D00E65B2A /* NotebookCell.xib */; };
+		8E23228F23EC9F5E00E65B2A /* NotebookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23223823EC9F5D00E65B2A /* NotebookCell.swift */; };
+		8E23229023EC9F5E00E65B2A /* Custom.zip in Resources */ = {isa = PBXBuildFile; fileRef = 8E23223923EC9F5D00E65B2A /* Custom.zip */; };
+		8E23229123EC9F5E00E65B2A /* TYButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23223C23EC9F5D00E65B2A /* TYButton.swift */; };
+		8E23229223EC9F5E00E65B2A /* NotebookHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23223E23EC9F5D00E65B2A /* NotebookHeader.swift */; };
+		8E23229323EC9F5E00E65B2A /* NotebookHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E23223F23EC9F5D00E65B2A /* NotebookHeader.xib */; };
+		8E23229423EC9F5E00E65B2A /* WaitingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23224123EC9F5D00E65B2A /* WaitingView.swift */; };
+		8E23229523EC9F5E00E65B2A /* EmptyFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23224323EC9F5D00E65B2A /* EmptyFooterView.swift */; };
+		8E23229623EC9F5E00E65B2A /* NotebookSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E23224523EC9F5D00E65B2A /* NotebookSelectionView.xib */; };
+		8E23229723EC9F5E00E65B2A /* NotebookSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23224623EC9F5D00E65B2A /* NotebookSelectionView.swift */; };
+		8E23229823EC9F5E00E65B2A /* TYInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23224823EC9F5D00E65B2A /* TYInput.swift */; };
+		8E23229923EC9F5E00E65B2A /* TYTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23224923EC9F5D00E65B2A /* TYTextField.swift */; };
+		8E23229A23EC9F5E00E65B2A /* TYCodeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23224A23EC9F5D00E65B2A /* TYCodeTextField.swift */; };
+		8E23229B23EC9F5E00E65B2A /* TYLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23224B23EC9F5D00E65B2A /* TYLabel.swift */; };
+		8E23229C23EC9F5E00E65B2A /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23224C23EC9F5D00E65B2A /* Country.swift */; };
+		8E23229D23EC9F5E00E65B2A /* CountryListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23224D23EC9F5D00E65B2A /* CountryListController.swift */; };
+		8E23229E23EC9F5E00E65B2A /* countries in Resources */ = {isa = PBXBuildFile; fileRef = 8E23224E23EC9F5D00E65B2A /* countries */; };
+		8E23229F23EC9F5E00E65B2A /* MasterController+StateCoordinatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23225223EC9F5D00E65B2A /* MasterController+StateCoordinatorDelegate.swift */; };
+		8E2322A023EC9F5E00E65B2A /* MasterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23225323EC9F5D00E65B2A /* MasterController.swift */; };
+		8E2322A123EC9F5E00E65B2A /* NotesViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23225523EC9F5D00E65B2A /* NotesViewController+.swift */; };
+		8E2322A223EC9F5E00E65B2A /* NotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23225623EC9F5D00E65B2A /* NotesViewController.swift */; };
+		8E2322A323EC9F5E00E65B2A /* NotesViewController+Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23225723EC9F5D00E65B2A /* NotesViewController+Editor.swift */; };
+		8E2322A423EC9F5E00E65B2A /* NotesViewController+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23225823EC9F5D00E65B2A /* NotesViewController+Helper.swift */; };
+		8E2322A523EC9F5E00E65B2A /* NotebookListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23225923EC9F5D00E65B2A /* NotebookListController.swift */; };
+		8E2322A823EC9F5E00E65B2A /* PlaceholderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E23226023EC9F5D00E65B2A /* PlaceholderViewController.xib */; };
+		8E2322A923EC9F5E00E65B2A /* PlaceholderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23226123EC9F5D00E65B2A /* PlaceholderViewController.swift */; };
+		8E2322AA23EC9F5E00E65B2A /* NotebookEditingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23226423EC9F5D00E65B2A /* NotebookEditingController.swift */; };
+		8E2322AB23EC9F5E00E65B2A /* NotebookViewController+header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23226523EC9F5D00E65B2A /* NotebookViewController+header.swift */; };
+		8E2322AC23EC9F5E00E65B2A /* NotebookViewController+datasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23226623EC9F5D00E65B2A /* NotebookViewController+datasource.swift */; };
+		8E2322AD23EC9F5E00E65B2A /* NotebookViewController+helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23226723EC9F5D00E65B2A /* NotebookViewController+helper.swift */; };
+		8E2322AE23EC9F5E00E65B2A /* NotebookViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23226823EC9F5D00E65B2A /* NotebookViewController+UITableViewDelegate.swift */; };
+		8E2322AF23EC9F5E00E65B2A /* NotebookViewController+EditingControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23226923EC9F5D00E65B2A /* NotebookViewController+EditingControllerDelegate.swift */; };
+		8E2322B023EC9F5E00E65B2A /* NotebookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23226A23EC9F5D00E65B2A /* NotebookViewController.swift */; };
+		8E2322B123EC9F5E00E65B2A /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23226C23EC9F5D00E65B2A /* SettingViewController.swift */; };
+		8E2322B223EC9F5E00E65B2A /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23226E23EC9F5D00E65B2A /* EditorViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		29831A245AC2A9065E030E2D /* Pods-Prynote.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Prynote.debug.xcconfig"; path = "Target Support Files/Pods-Prynote/Pods-Prynote.debug.xcconfig"; sourceTree = "<group>"; };
+		58C9EF9F630BBAFC251E767C /* Pods_Prynote.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Prynote.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C91D92FCFAD79161F1BF8F3 /* Pods-Prynote.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Prynote.release.xcconfig"; path = "Target Support Files/Pods-Prynote/Pods-Prynote.release.xcconfig"; sourceTree = "<group>"; };
+		8E0CFFF523EE4138004692C2 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
+		8E2321FE23EC97DF00E65B2A /* Prynote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Prynote.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E23220123EC97DF00E65B2A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8E23220323EC97DF00E65B2A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8E23220623EC97DF00E65B2A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8E23220823EC97E400E65B2A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8E23220B23EC97E400E65B2A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8E23220D23EC97E400E65B2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8E23221423EC9F5C00E65B2A /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		8E23221523EC9F5C00E65B2A /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		8E23221623EC9F5C00E65B2A /* PrynoteError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrynoteError.swift; sourceTree = "<group>"; };
+		8E23221723EC9F5C00E65B2A /* NotesGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesGroup.swift; sourceTree = "<group>"; };
+		8E23221823EC9F5C00E65B2A /* StateCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateCoordinator.swift; sourceTree = "<group>"; };
+		8E23221923EC9F5C00E65B2A /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		8E23221A23EC9F5C00E65B2A /* Notebook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notebook.swift; sourceTree = "<group>"; };
+		8E23221B23EC9F5C00E65B2A /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		8E23221D23EC9F5C00E65B2A /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
+		8E23221E23EC9F5C00E65B2A /* util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = util.swift; sourceTree = "<group>"; };
+		8E23221F23EC9F5C00E65B2A /* Keyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
+		8E23222123EC9F5D00E65B2A /* PhoneNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneNumber.swift; sourceTree = "<group>"; };
+		8E23222323EC9F5D00E65B2A /* NSNotification.Name+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSNotification.Name+.swift"; sourceTree = "<group>"; };
+		8E23222523EC9F5D00E65B2A /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		8E23222623EC9F5D00E65B2A /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		8E23222723EC9F5D00E65B2A /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		8E23222823EC9F5D00E65B2A /* TY.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TY.swift; sourceTree = "<group>"; };
+		8E23222923EC9F5D00E65B2A /* UIFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
+		8E23222A23EC9F5D00E65B2A /* UIView+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		8E23222B23EC9F5D00E65B2A /* UIViewController+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
+		8E23222C23EC9F5D00E65B2A /* UIButton+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
+		8E23222D23EC9F5D00E65B2A /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		8E23222E23EC9F5D00E65B2A /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
+		8E23222F23EC9F5D00E65B2A /* Double.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
+		8E23223023EC9F5D00E65B2A /* UIViewController+froze.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+froze.swift"; sourceTree = "<group>"; };
+		8E23223123EC9F5D00E65B2A /* Date+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
+		8E23223223EC9F5D00E65B2A /* UINavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UINavigationController.swift; sourceTree = "<group>"; };
+		8E23223523EC9F5D00E65B2A /* NoteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteCell.swift; sourceTree = "<group>"; };
+		8E23223623EC9F5D00E65B2A /* NoteCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoteCell.xib; sourceTree = "<group>"; };
+		8E23223723EC9F5D00E65B2A /* NotebookCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotebookCell.xib; sourceTree = "<group>"; };
+		8E23223823EC9F5D00E65B2A /* NotebookCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotebookCell.swift; sourceTree = "<group>"; };
+		8E23223923EC9F5D00E65B2A /* Custom.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = Custom.zip; sourceTree = "<group>"; };
+		8E23223C23EC9F5D00E65B2A /* TYButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TYButton.swift; sourceTree = "<group>"; };
+		8E23223E23EC9F5D00E65B2A /* NotebookHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotebookHeader.swift; sourceTree = "<group>"; };
+		8E23223F23EC9F5D00E65B2A /* NotebookHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotebookHeader.xib; sourceTree = "<group>"; };
+		8E23224123EC9F5D00E65B2A /* WaitingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitingView.swift; sourceTree = "<group>"; };
+		8E23224323EC9F5D00E65B2A /* EmptyFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyFooterView.swift; sourceTree = "<group>"; };
+		8E23224523EC9F5D00E65B2A /* NotebookSelectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotebookSelectionView.xib; sourceTree = "<group>"; };
+		8E23224623EC9F5D00E65B2A /* NotebookSelectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotebookSelectionView.swift; sourceTree = "<group>"; };
+		8E23224823EC9F5D00E65B2A /* TYInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TYInput.swift; sourceTree = "<group>"; };
+		8E23224923EC9F5D00E65B2A /* TYTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TYTextField.swift; sourceTree = "<group>"; };
+		8E23224A23EC9F5D00E65B2A /* TYCodeTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TYCodeTextField.swift; sourceTree = "<group>"; };
+		8E23224B23EC9F5D00E65B2A /* TYLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TYLabel.swift; sourceTree = "<group>"; };
+		8E23224C23EC9F5D00E65B2A /* Country.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
+		8E23224D23EC9F5D00E65B2A /* CountryListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryListController.swift; sourceTree = "<group>"; };
+		8E23224E23EC9F5D00E65B2A /* countries */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = countries; sourceTree = "<group>"; };
+		8E23225223EC9F5D00E65B2A /* MasterController+StateCoordinatorDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MasterController+StateCoordinatorDelegate.swift"; sourceTree = "<group>"; };
+		8E23225323EC9F5D00E65B2A /* MasterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterController.swift; sourceTree = "<group>"; };
+		8E23225523EC9F5D00E65B2A /* NotesViewController+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NotesViewController+.swift"; sourceTree = "<group>"; };
+		8E23225623EC9F5D00E65B2A /* NotesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesViewController.swift; sourceTree = "<group>"; };
+		8E23225723EC9F5D00E65B2A /* NotesViewController+Editor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NotesViewController+Editor.swift"; sourceTree = "<group>"; };
+		8E23225823EC9F5D00E65B2A /* NotesViewController+Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NotesViewController+Helper.swift"; sourceTree = "<group>"; };
+		8E23225923EC9F5D00E65B2A /* NotebookListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotebookListController.swift; sourceTree = "<group>"; };
+		8E23226023EC9F5D00E65B2A /* PlaceholderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlaceholderViewController.xib; sourceTree = "<group>"; };
+		8E23226123EC9F5D00E65B2A /* PlaceholderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceholderViewController.swift; sourceTree = "<group>"; };
+		8E23226423EC9F5D00E65B2A /* NotebookEditingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotebookEditingController.swift; sourceTree = "<group>"; };
+		8E23226523EC9F5D00E65B2A /* NotebookViewController+header.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NotebookViewController+header.swift"; sourceTree = "<group>"; };
+		8E23226623EC9F5D00E65B2A /* NotebookViewController+datasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NotebookViewController+datasource.swift"; sourceTree = "<group>"; };
+		8E23226723EC9F5D00E65B2A /* NotebookViewController+helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NotebookViewController+helper.swift"; sourceTree = "<group>"; };
+		8E23226823EC9F5D00E65B2A /* NotebookViewController+UITableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NotebookViewController+UITableViewDelegate.swift"; sourceTree = "<group>"; };
+		8E23226923EC9F5D00E65B2A /* NotebookViewController+EditingControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NotebookViewController+EditingControllerDelegate.swift"; sourceTree = "<group>"; };
+		8E23226A23EC9F5D00E65B2A /* NotebookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotebookViewController.swift; sourceTree = "<group>"; };
+		8E23226C23EC9F5D00E65B2A /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		8E23226E23EC9F5D00E65B2A /* EditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8E2321FB23EC97DF00E65B2A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				79BDAD15A219B5237712B581 /* Pods_Prynote.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		78188290280DCAA4D34FD95C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				29831A245AC2A9065E030E2D /* Pods-Prynote.debug.xcconfig */,
+				8C91D92FCFAD79161F1BF8F3 /* Pods-Prynote.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		8E2321F523EC97DF00E65B2A = {
+			isa = PBXGroup;
+			children = (
+				8E23220023EC97DF00E65B2A /* Prynote */,
+				8E2321FF23EC97DF00E65B2A /* Products */,
+				78188290280DCAA4D34FD95C /* Pods */,
+				A13007575B0422BB62DECD61 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		8E2321FF23EC97DF00E65B2A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8E2321FE23EC97DF00E65B2A /* Prynote.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8E23220023EC97DF00E65B2A /* Prynote */ = {
+			isa = PBXGroup;
+			children = (
+				8E23224F23EC9F5D00E65B2A /* Controller */,
+				8E23222023EC9F5D00E65B2A /* Extension */,
+				8E23221C23EC9F5C00E65B2A /* Functions */,
+				8E23221323EC9F5C00E65B2A /* Model */,
+				8E23223323EC9F5D00E65B2A /* View */,
+				8E23220123EC97DF00E65B2A /* AppDelegate.swift */,
+				8E23220323EC97DF00E65B2A /* ViewController.swift */,
+				8E0CFFF523EE4138004692C2 /* R.generated.swift */,
+				8E23220523EC97DF00E65B2A /* Main.storyboard */,
+				8E23220823EC97E400E65B2A /* Assets.xcassets */,
+				8E23220A23EC97E400E65B2A /* LaunchScreen.storyboard */,
+				8E23220D23EC97E400E65B2A /* Info.plist */,
+			);
+			path = Prynote;
+			sourceTree = "<group>";
+		};
+		8E23221323EC9F5C00E65B2A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8E23221423EC9F5C00E65B2A /* Storage.swift */,
+				8E23221523EC9F5C00E65B2A /* Constant.swift */,
+				8E23221623EC9F5C00E65B2A /* PrynoteError.swift */,
+				8E23221723EC9F5C00E65B2A /* NotesGroup.swift */,
+				8E23221823EC9F5C00E65B2A /* StateCoordinator.swift */,
+				8E23221923EC9F5C00E65B2A /* User.swift */,
+				8E23221A23EC9F5C00E65B2A /* Notebook.swift */,
+				8E23221B23EC9F5C00E65B2A /* Note.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8E23221C23EC9F5C00E65B2A /* Functions */ = {
+			isa = PBXGroup;
+			children = (
+				8E23221D23EC9F5C00E65B2A /* Functions.swift */,
+				8E23221E23EC9F5C00E65B2A /* util.swift */,
+				8E23221F23EC9F5C00E65B2A /* Keyboard.swift */,
+			);
+			path = Functions;
+			sourceTree = "<group>";
+		};
+		8E23222023EC9F5D00E65B2A /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				8E23222123EC9F5D00E65B2A /* PhoneNumber.swift */,
+				8E23222323EC9F5D00E65B2A /* NSNotification.Name+.swift */,
+				8E23222423EC9F5D00E65B2A /* TY */,
+				8E23222A23EC9F5D00E65B2A /* UIView+.swift */,
+				8E23222B23EC9F5D00E65B2A /* UIViewController+.swift */,
+				8E23222C23EC9F5D00E65B2A /* UIButton+.swift */,
+				8E23222D23EC9F5D00E65B2A /* String.swift */,
+				8E23222E23EC9F5D00E65B2A /* UIImage.swift */,
+				8E23222F23EC9F5D00E65B2A /* Double.swift */,
+				8E23223023EC9F5D00E65B2A /* UIViewController+froze.swift */,
+				8E23223123EC9F5D00E65B2A /* Date+.swift */,
+				8E23223223EC9F5D00E65B2A /* UINavigationController.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		8E23222423EC9F5D00E65B2A /* TY */ = {
+			isa = PBXGroup;
+			children = (
+				8E23222523EC9F5D00E65B2A /* UIView.swift */,
+				8E23222623EC9F5D00E65B2A /* UIColor.swift */,
+				8E23222723EC9F5D00E65B2A /* Notification.swift */,
+				8E23222823EC9F5D00E65B2A /* TY.swift */,
+				8E23222923EC9F5D00E65B2A /* UIFont.swift */,
+			);
+			path = TY;
+			sourceTree = "<group>";
+		};
+		8E23223323EC9F5D00E65B2A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8E23223423EC9F5D00E65B2A /* Cell */,
+				8E23223923EC9F5D00E65B2A /* Custom.zip */,
+				8E23223A23EC9F5D00E65B2A /* Custom */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8E23223423EC9F5D00E65B2A /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				8E23223523EC9F5D00E65B2A /* NoteCell.swift */,
+				8E23223623EC9F5D00E65B2A /* NoteCell.xib */,
+				8E23223723EC9F5D00E65B2A /* NotebookCell.xib */,
+				8E23223823EC9F5D00E65B2A /* NotebookCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		8E23223A23EC9F5D00E65B2A /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				8E23223B23EC9F5D00E65B2A /* TYButton */,
+				8E23223D23EC9F5D00E65B2A /* FoldableHeader */,
+				8E23224023EC9F5D00E65B2A /* WaitingView */,
+				8E23224223EC9F5D00E65B2A /* EmptyFooterView */,
+				8E23224423EC9F5D00E65B2A /* NotebookSelectionView */,
+				8E23224723EC9F5D00E65B2A /* TYInput */,
+			);
+			path = Custom;
+			sourceTree = "<group>";
+		};
+		8E23223B23EC9F5D00E65B2A /* TYButton */ = {
+			isa = PBXGroup;
+			children = (
+				8E23223C23EC9F5D00E65B2A /* TYButton.swift */,
+			);
+			path = TYButton;
+			sourceTree = "<group>";
+		};
+		8E23223D23EC9F5D00E65B2A /* FoldableHeader */ = {
+			isa = PBXGroup;
+			children = (
+				8E23223E23EC9F5D00E65B2A /* NotebookHeader.swift */,
+				8E23223F23EC9F5D00E65B2A /* NotebookHeader.xib */,
+			);
+			path = FoldableHeader;
+			sourceTree = "<group>";
+		};
+		8E23224023EC9F5D00E65B2A /* WaitingView */ = {
+			isa = PBXGroup;
+			children = (
+				8E23224123EC9F5D00E65B2A /* WaitingView.swift */,
+			);
+			path = WaitingView;
+			sourceTree = "<group>";
+		};
+		8E23224223EC9F5D00E65B2A /* EmptyFooterView */ = {
+			isa = PBXGroup;
+			children = (
+				8E23224323EC9F5D00E65B2A /* EmptyFooterView.swift */,
+			);
+			path = EmptyFooterView;
+			sourceTree = "<group>";
+		};
+		8E23224423EC9F5D00E65B2A /* NotebookSelectionView */ = {
+			isa = PBXGroup;
+			children = (
+				8E23224523EC9F5D00E65B2A /* NotebookSelectionView.xib */,
+				8E23224623EC9F5D00E65B2A /* NotebookSelectionView.swift */,
+			);
+			path = NotebookSelectionView;
+			sourceTree = "<group>";
+		};
+		8E23224723EC9F5D00E65B2A /* TYInput */ = {
+			isa = PBXGroup;
+			children = (
+				8E23224823EC9F5D00E65B2A /* TYInput.swift */,
+				8E23224923EC9F5D00E65B2A /* TYTextField.swift */,
+				8E23224A23EC9F5D00E65B2A /* TYCodeTextField.swift */,
+				8E23224B23EC9F5D00E65B2A /* TYLabel.swift */,
+				8E23224C23EC9F5D00E65B2A /* Country.swift */,
+				8E23224D23EC9F5D00E65B2A /* CountryListController.swift */,
+				8E23224E23EC9F5D00E65B2A /* countries */,
+			);
+			path = TYInput;
+			sourceTree = "<group>";
+		};
+		8E23224F23EC9F5D00E65B2A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8E23225023EC9F5D00E65B2A /* Note */,
+				8E23225123EC9F5D00E65B2A /* MasterController */,
+				8E23225423EC9F5D00E65B2A /* Notes */,
+				8E23225F23EC9F5D00E65B2A /* Placeholder */,
+				8E23226223EC9F5D00E65B2A /* Notebook */,
+				8E23226B23EC9F5D00E65B2A /* Setting */,
+				8E23226D23EC9F5D00E65B2A /* Editor */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		8E23225023EC9F5D00E65B2A /* Note */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Note;
+			sourceTree = "<group>";
+		};
+		8E23225123EC9F5D00E65B2A /* MasterController */ = {
+			isa = PBXGroup;
+			children = (
+				8E23225223EC9F5D00E65B2A /* MasterController+StateCoordinatorDelegate.swift */,
+				8E23225323EC9F5D00E65B2A /* MasterController.swift */,
+			);
+			path = MasterController;
+			sourceTree = "<group>";
+		};
+		8E23225423EC9F5D00E65B2A /* Notes */ = {
+			isa = PBXGroup;
+			children = (
+				8E23225523EC9F5D00E65B2A /* NotesViewController+.swift */,
+				8E23225623EC9F5D00E65B2A /* NotesViewController.swift */,
+				8E23225723EC9F5D00E65B2A /* NotesViewController+Editor.swift */,
+				8E23225823EC9F5D00E65B2A /* NotesViewController+Helper.swift */,
+				8E23225923EC9F5D00E65B2A /* NotebookListController.swift */,
+			);
+			path = Notes;
+			sourceTree = "<group>";
+		};
+		8E23225F23EC9F5D00E65B2A /* Placeholder */ = {
+			isa = PBXGroup;
+			children = (
+				8E23226023EC9F5D00E65B2A /* PlaceholderViewController.xib */,
+				8E23226123EC9F5D00E65B2A /* PlaceholderViewController.swift */,
+			);
+			path = Placeholder;
+			sourceTree = "<group>";
+		};
+		8E23226223EC9F5D00E65B2A /* Notebook */ = {
+			isa = PBXGroup;
+			children = (
+				8E23226323EC9F5D00E65B2A /* NotebookEditingController */,
+				8E23226523EC9F5D00E65B2A /* NotebookViewController+header.swift */,
+				8E23226623EC9F5D00E65B2A /* NotebookViewController+datasource.swift */,
+				8E23226723EC9F5D00E65B2A /* NotebookViewController+helper.swift */,
+				8E23226823EC9F5D00E65B2A /* NotebookViewController+UITableViewDelegate.swift */,
+				8E23226923EC9F5D00E65B2A /* NotebookViewController+EditingControllerDelegate.swift */,
+				8E23226A23EC9F5D00E65B2A /* NotebookViewController.swift */,
+			);
+			path = Notebook;
+			sourceTree = "<group>";
+		};
+		8E23226323EC9F5D00E65B2A /* NotebookEditingController */ = {
+			isa = PBXGroup;
+			children = (
+				8E23226423EC9F5D00E65B2A /* NotebookEditingController.swift */,
+			);
+			path = NotebookEditingController;
+			sourceTree = "<group>";
+		};
+		8E23226B23EC9F5D00E65B2A /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				8E23226C23EC9F5D00E65B2A /* SettingViewController.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		8E23226D23EC9F5D00E65B2A /* Editor */ = {
+			isa = PBXGroup;
+			children = (
+				8E23226E23EC9F5D00E65B2A /* EditorViewController.swift */,
+			);
+			path = Editor;
+			sourceTree = "<group>";
+		};
+		A13007575B0422BB62DECD61 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				58C9EF9F630BBAFC251E767C /* Pods_Prynote.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8E2321FD23EC97DF00E65B2A /* Prynote */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8E23221023EC97E400E65B2A /* Build configuration list for PBXNativeTarget "Prynote" */;
+			buildPhases = (
+				697C4CDF1E0BC5860380966C /* [CP] Check Pods Manifest.lock */,
+				8E0CFFF423EE40E3004692C2 /* ShellScript */,
+				8E2321FA23EC97DF00E65B2A /* Sources */,
+				8E2321FB23EC97DF00E65B2A /* Frameworks */,
+				8E2321FC23EC97DF00E65B2A /* Resources */,
+				1385B80D8B7AB7FC89FB2C17 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Prynote;
+			productName = Prynote;
+			productReference = 8E2321FE23EC97DF00E65B2A /* Prynote.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8E2321F623EC97DF00E65B2A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1020;
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = "Yi Tong";
+				TargetAttributes = {
+					8E2321FD23EC97DF00E65B2A = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
+				};
+			};
+			buildConfigurationList = 8E2321F923EC97DF00E65B2A /* Build configuration list for PBXProject "Prynote" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8E2321F523EC97DF00E65B2A;
+			productRefGroup = 8E2321FF23EC97DF00E65B2A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8E2321FD23EC97DF00E65B2A /* Prynote */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8E2321FC23EC97DF00E65B2A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8E23229E23EC9F5E00E65B2A /* countries in Resources */,
+				8E23229323EC9F5E00E65B2A /* NotebookHeader.xib in Resources */,
+				8E23229023EC9F5E00E65B2A /* Custom.zip in Resources */,
+				8E23220C23EC97E400E65B2A /* LaunchScreen.storyboard in Resources */,
+				8E2322A823EC9F5E00E65B2A /* PlaceholderViewController.xib in Resources */,
+				8E23220923EC97E400E65B2A /* Assets.xcassets in Resources */,
+				8E23229623EC9F5E00E65B2A /* NotebookSelectionView.xib in Resources */,
+				8E23228E23EC9F5E00E65B2A /* NotebookCell.xib in Resources */,
+				8E23220723EC97DF00E65B2A /* Main.storyboard in Resources */,
+				8E23228D23EC9F5E00E65B2A /* NoteCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1385B80D8B7AB7FC89FB2C17 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Prynote/Pods-Prynote-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Prynote/Pods-Prynote-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Prynote/Pods-Prynote-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		697C4CDF1E0BC5860380966C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Prynote-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8E0CFFF423EE40E3004692C2 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$TEMP_DIR/rswift-lastrun",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				$SRCROOT/R.generated.swift,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8E2321FA23EC97DF00E65B2A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8E2322AC23EC9F5E00E65B2A /* NotebookViewController+datasource.swift in Sources */,
+				8E2322B123EC9F5E00E65B2A /* SettingViewController.swift in Sources */,
+				8E23220423EC97DF00E65B2A /* ViewController.swift in Sources */,
+				8E23229A23EC9F5E00E65B2A /* TYCodeTextField.swift in Sources */,
+				8E23229523EC9F5E00E65B2A /* EmptyFooterView.swift in Sources */,
+				8E23227B23EC9F5E00E65B2A /* PhoneNumber.swift in Sources */,
+				8E2322AF23EC9F5E00E65B2A /* NotebookViewController+EditingControllerDelegate.swift in Sources */,
+				8E23227423EC9F5E00E65B2A /* StateCoordinator.swift in Sources */,
+				8E23227223EC9F5E00E65B2A /* PrynoteError.swift in Sources */,
+				8E23227923EC9F5E00E65B2A /* util.swift in Sources */,
+				8E23220223EC97DF00E65B2A /* AppDelegate.swift in Sources */,
+				8E23227A23EC9F5E00E65B2A /* Keyboard.swift in Sources */,
+				8E23229B23EC9F5E00E65B2A /* TYLabel.swift in Sources */,
+				8E23228823EC9F5E00E65B2A /* Double.swift in Sources */,
+				8E23228523EC9F5E00E65B2A /* UIButton+.swift in Sources */,
+				8E23229123EC9F5E00E65B2A /* TYButton.swift in Sources */,
+				8E23227D23EC9F5E00E65B2A /* NSNotification.Name+.swift in Sources */,
+				8E23228323EC9F5E00E65B2A /* UIView+.swift in Sources */,
+				8E2322A423EC9F5E00E65B2A /* NotesViewController+Helper.swift in Sources */,
+				8E23228123EC9F5E00E65B2A /* TY.swift in Sources */,
+				8E23228723EC9F5E00E65B2A /* UIImage.swift in Sources */,
+				8E23227823EC9F5E00E65B2A /* Functions.swift in Sources */,
+				8E23228F23EC9F5E00E65B2A /* NotebookCell.swift in Sources */,
+				8E2322B023EC9F5E00E65B2A /* NotebookViewController.swift in Sources */,
+				8E2322B223EC9F5E00E65B2A /* EditorViewController.swift in Sources */,
+				8E23229423EC9F5E00E65B2A /* WaitingView.swift in Sources */,
+				8E23227623EC9F5E00E65B2A /* Notebook.swift in Sources */,
+				8E2322A523EC9F5E00E65B2A /* NotebookListController.swift in Sources */,
+				8E23228C23EC9F5E00E65B2A /* NoteCell.swift in Sources */,
+				8E23227723EC9F5E00E65B2A /* Note.swift in Sources */,
+				8E23228423EC9F5E00E65B2A /* UIViewController+.swift in Sources */,
+				8E2322AA23EC9F5E00E65B2A /* NotebookEditingController.swift in Sources */,
+				8E23229F23EC9F5E00E65B2A /* MasterController+StateCoordinatorDelegate.swift in Sources */,
+				8E23228023EC9F5E00E65B2A /* Notification.swift in Sources */,
+				8E23228623EC9F5E00E65B2A /* String.swift in Sources */,
+				8E23227523EC9F5E00E65B2A /* User.swift in Sources */,
+				8E23229C23EC9F5E00E65B2A /* Country.swift in Sources */,
+				8E2322A023EC9F5E00E65B2A /* MasterController.swift in Sources */,
+				8E23228B23EC9F5E00E65B2A /* UINavigationController.swift in Sources */,
+				8E23229223EC9F5E00E65B2A /* NotebookHeader.swift in Sources */,
+				8E2322A223EC9F5E00E65B2A /* NotesViewController.swift in Sources */,
+				8E23228A23EC9F5E00E65B2A /* Date+.swift in Sources */,
+				8E23229823EC9F5E00E65B2A /* TYInput.swift in Sources */,
+				8E2322A923EC9F5E00E65B2A /* PlaceholderViewController.swift in Sources */,
+				8E23228923EC9F5E00E65B2A /* UIViewController+froze.swift in Sources */,
+				8E23229723EC9F5E00E65B2A /* NotebookSelectionView.swift in Sources */,
+				8E23229923EC9F5E00E65B2A /* TYTextField.swift in Sources */,
+				8E0CFFF623EE4138004692C2 /* R.generated.swift in Sources */,
+				8E23229D23EC9F5E00E65B2A /* CountryListController.swift in Sources */,
+				8E23227F23EC9F5E00E65B2A /* UIColor.swift in Sources */,
+				8E23227E23EC9F5E00E65B2A /* UIView.swift in Sources */,
+				8E2322A323EC9F5E00E65B2A /* NotesViewController+Editor.swift in Sources */,
+				8E23228223EC9F5E00E65B2A /* UIFont.swift in Sources */,
+				8E2322A123EC9F5E00E65B2A /* NotesViewController+.swift in Sources */,
+				8E23227023EC9F5D00E65B2A /* Storage.swift in Sources */,
+				8E2322AD23EC9F5E00E65B2A /* NotebookViewController+helper.swift in Sources */,
+				8E23227123EC9F5E00E65B2A /* Constant.swift in Sources */,
+				8E2322AB23EC9F5E00E65B2A /* NotebookViewController+header.swift in Sources */,
+				8E2322AE23EC9F5E00E65B2A /* NotebookViewController+UITableViewDelegate.swift in Sources */,
+				8E23227323EC9F5E00E65B2A /* NotesGroup.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		8E23220523EC97DF00E65B2A /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8E23220623EC97DF00E65B2A /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		8E23220A23EC97E400E65B2A /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8E23220B23EC97E400E65B2A /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8E23220E23EC97E400E65B2A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8E23220F23EC97E400E65B2A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8E23221123EC97E400E65B2A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 29831A245AC2A9065E030E2D /* Pods-Prynote.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DKH5D278T8;
+				INFOPLIST_FILE = Prynote/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.AiTmed.Prynote;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8E23221223EC97E400E65B2A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8C91D92FCFAD79161F1BF8F3 /* Pods-Prynote.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DKH5D278T8;
+				INFOPLIST_FILE = Prynote/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.AiTmed.Prynote;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8E2321F923EC97DF00E65B2A /* Build configuration list for PBXProject "Prynote" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8E23220E23EC97E400E65B2A /* Debug */,
+				8E23220F23EC97E400E65B2A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8E23221023EC97E400E65B2A /* Build configuration list for PBXNativeTarget "Prynote" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8E23221123EC97E400E65B2A /* Debug */,
+				8E23221223EC97E400E65B2A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8E2321F623EC97DF00E65B2A /* Project object */;
+}

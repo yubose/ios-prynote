@@ -1,0 +1,18 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+source 'https://gitlab.aitmed.io/ios-dev/specs.git'
+source 'https://github.com/CocoaPods/Specs.git'
+
+target 'Prynote' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+ pod 'Reveal-SDK', :configurations => ['Debug']
+ pod 'AiTmedSDK', '~> 0.1.0'
+ pod 'IQKeyboardManager'
+ pod 'SnapKit'
+ pod 'R.swift'
+ pod 'SideMenu'
+  # Pods for Prynote
+
+end
