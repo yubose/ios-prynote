@@ -66,8 +66,8 @@ class Notebook {
             case .failure(let error):
                 completion(.failure(.unkown))
             case .success(_):
-                NotificationCenter.default.post(name: .didRemoveNote, object: self)
                 self?.notes.removeAll(where: { $0.id == id })
+                NotificationCenter.default.post(name: .didRemoveNote, object: self)
                 completion(.success(()))
             }
         }

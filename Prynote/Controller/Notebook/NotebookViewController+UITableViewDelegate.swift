@@ -22,9 +22,21 @@ extension NotebookViewController {
                     case .success(_):
                         self.asyncDeleteIfNeeded(indexPath)
                         self.asyncReloadIfNeeded(IndexPath(row: 0, section: 0))
+                        
+                        self.clearDetail(for: nb)
                     }
                 }
             }
+        }
+    }
+    
+    private func clearDetail(for nb: Notebook) {
+        guard let split = splitViewController else { return }
+        guard split.viewControllers.count > 1 else { return }
+        if let secondNav = split.viewControllers[1] as? UINavigationController,
+            let editor = secondNav.viewControllers.first as? EditorViewController,
+        editor.notebook.id == nb.id {
+            stateCoordinator.select(nil)
         }
     }
     

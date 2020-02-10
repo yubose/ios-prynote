@@ -21,10 +21,16 @@ extension NotesViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constant.Identifier.NOTECELL, for: indexPath) as! NoteCell
         let note = group.notes[indexPath.row]
+        let cell: UITableViewCell
+        if note.isBroken {
+            cell = tableView.dequeueReusableCell(withIdentifier: Constant.Identifier.BROKENNOTECELL, for: indexPath) as! BrokenNoteCell
+        } else {
+            let _cell = tableView.dequeueReusableCell(withIdentifier: Constant.Identifier.NOTECELL, for: indexPath) as! NoteCell
+            configure(_cell, with: note)
+            cell = _cell
+        }
         
-        configure(cell, with: note)
         return cell
     }
     
@@ -50,8 +56,36 @@ extension NotesViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            
+            let note = group.notes[indexPath.row]
+            WaitingView.scheduleDisplayOnWindow(delay: 0.5, msg: "Deleting...")
+            note.notebook.deleteNote(id: note.id) { [weak self] (result) in
+                WaitingView.dismissOnWindow()
+                guard let strongSelf = self else { return }
+                switch result {
+                case .failure(let error):
+                    strongSelf.displayAutoDismissAlert(msg: "Delete note failed")
+                case .success(_):
+                    DispatchQueue.main.async {
+                        if strongSelf.isCurrentNoteDeleted(deletedID: note.id) {
+                            strongSelf.stateCoordinator.select(nil)
+                        }
+                    }
+                }
+            }
         }
+    }
+    
+    private func isCurrentNoteDeleted(deletedID: Data) -> Bool {
+        if let split = splitViewController,
+            split.viewControllers.count > 1,
+            let secondNav = split.viewControllers[1] as? UINavigationController,
+            let editor = secondNav.topViewController as? EditorViewController,
+            case let .update(n) = editor.mode,
+            n.id == deletedID {
+            return true
+        }
+        
+        return false
     }
     
     private func configure(_ cell: NoteCell, with note: Note) {

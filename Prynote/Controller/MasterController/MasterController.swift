@@ -97,15 +97,12 @@ extension MasterController: UISplitViewControllerDelegate {
             return true
         }
         
-        let navigation = primaryNav(rootSplit)
-        var stack = navigation.viewControllers
-        
-//        if let editor = editorViewController() {
-//            stack.append(editor)
-//            navigation.viewControllers = stack
-//            return true
-//        }
-        
+        if let secondNav = secondaryViewController as? UINavigationController,
+            let editor = secondNav.topViewController as? EditorViewController {
+            let navigation = primaryNav(splitViewController)
+            navigation.viewControllers.append(editor)
+            return true
+        }
         return false
     }
     
@@ -118,33 +115,17 @@ extension MasterController: UISplitViewControllerDelegate {
             return freshPlaceholderViewController()
         }
         
-        //notebook and notes
-        if stack.count == 2 {
-            return freshPlaceholderViewController()
+        //notebook and notes || notebook and notes and editor
+        if stack.count == 2 || stack.count == 3 {
+            
+            if navigation.topViewController is EditorViewController {
+                let editor = navigation.popViewController(animated: false)!
+                return TransparentNavigationController(rootViewController: editor)
+            } else {
+                return freshPlaceholderViewController()
+            }
         }
         
-        //notebook and notes and editor
-        fatalError()
-
-//        if rootSplitNavStack(in: .all) {
-//            if let editor = stack[2] as? EditorViewController {
-//                navigation.viewControllers = [stack[0], stack[1]]
-//                return freshNavigation(root: editor)
-//            } else {
-//                return nil
-//            }
-//        }
-//
-//        if rootSplitNavStack(in: .notebookAndNotes) || rootSplitNavStack(in: .notebookAndEditor) || rootSplitNavStack(in: .notebookOnly) {
-//            navigation.viewControllers = stack
-//            if let editor = editorViewController() {
-//                return freshNavigation(root: editor)
-//            } else {
-//                rootSplit.preferredDisplayMode = .allVisible
-//                return freshPlaceholderViewController()
-//            }
-//        }
-//
-//        return nil
+        return nil
     }
 }

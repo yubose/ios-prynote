@@ -59,12 +59,14 @@ class NotesViewController: UITableViewController {
     @objc func didLoadAllNotesInNotebook(no: Notification) {
         DispatchQueue.main.async {
             self.tableView.reloadData()
+            self.updateCountItem()
         }
     }
     
     @objc func didAddNote(no: Notification) {
         DispatchQueue.main.async {
             self.tableView.reloadData()
+            self.updateCountItem()
         }
     }
     
@@ -72,21 +74,24 @@ class NotesViewController: UITableViewController {
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
-
     }
     
     @objc func didRemoveNote(no: Notification) {
         DispatchQueue.main.async {
             self.tableView.reloadData()
+            self.updateCountItem()
         }
     }
     
     private func setUp() {
         //tableview
         tableView.register(UINib(resource: R.nib.noteCell), forCellReuseIdentifier: Constant.Identifier.NOTECELL)
+        tableView.register(UINib(resource: R.nib.brokenNoteCell), forCellReuseIdentifier: Constant.Identifier.BROKENNOTECELL)
         tableView.tableFooterView = UIView()
         tableView.backgroundView = UIImageView(image: R.image.paper_light())
         tableView.allowsMultipleSelection = false
+        tableView.showsVerticalScrollIndicator = false
+        tableView.showsHorizontalScrollIndicator = false
         
         //navigation
         navigationItem.title = group.title
@@ -108,9 +113,14 @@ class NotesViewController: UITableViewController {
                 toolbarItems = [spaceItem, noteCountItem, spaceItem, writeItem]
             }
 
-            if let label = noteCountItem.customView as? UILabel {
-                label.text = "\(group.count) notes"
-            }
+            updateCountItem()
+        }
+    }
+    
+    func updateCountItem() {
+        if let label = noteCountItem.customView as? UILabel {
+            label.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 999), for: .horizontal)
+            label.text = "\(group.count) notes"
         }
     }
     

@@ -7,10 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		100698A423EE8576005CAF59 /* BrokenNoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100698A223EE8576005CAF59 /* BrokenNoteCell.swift */; };
+		100698A523EE8576005CAF59 /* BrokenNoteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 100698A323EE8576005CAF59 /* BrokenNoteCell.xib */; };
+		100698A823EE8832005CAF59 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100698A723EE8832005CAF59 /* ProfileViewController.swift */; };
+		100698AE23EE9085005CAF59 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 100698AD23EE9085005CAF59 /* ProfileViewController.xib */; };
+		100698B023F08805005CAF59 /* TransparentNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100698AF23F08805005CAF59 /* TransparentNavigationController.swift */; };
 		79BDAD15A219B5237712B581 /* Pods_Prynote.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58C9EF9F630BBAFC251E767C /* Pods_Prynote.framework */; };
 		8E0CFFF623EE4138004692C2 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0CFFF523EE4138004692C2 /* R.generated.swift */; };
 		8E23220223EC97DF00E65B2A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23220123EC97DF00E65B2A /* AppDelegate.swift */; };
-		8E23220423EC97DF00E65B2A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23220323EC97DF00E65B2A /* ViewController.swift */; };
 		8E23220723EC97DF00E65B2A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E23220523EC97DF00E65B2A /* Main.storyboard */; };
 		8E23220923EC97E400E65B2A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E23220823EC97E400E65B2A /* Assets.xcassets */; };
 		8E23220C23EC97E400E65B2A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E23220A23EC97E400E65B2A /* LaunchScreen.storyboard */; };
@@ -45,7 +49,6 @@
 		8E23228D23EC9F5E00E65B2A /* NoteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E23223623EC9F5D00E65B2A /* NoteCell.xib */; };
 		8E23228E23EC9F5E00E65B2A /* NotebookCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E23223723EC9F5D00E65B2A /* NotebookCell.xib */; };
 		8E23228F23EC9F5E00E65B2A /* NotebookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23223823EC9F5D00E65B2A /* NotebookCell.swift */; };
-		8E23229023EC9F5E00E65B2A /* Custom.zip in Resources */ = {isa = PBXBuildFile; fileRef = 8E23223923EC9F5D00E65B2A /* Custom.zip */; };
 		8E23229123EC9F5E00E65B2A /* TYButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23223C23EC9F5D00E65B2A /* TYButton.swift */; };
 		8E23229223EC9F5E00E65B2A /* NotebookHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23223E23EC9F5D00E65B2A /* NotebookHeader.swift */; };
 		8E23229323EC9F5E00E65B2A /* NotebookHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E23223F23EC9F5D00E65B2A /* NotebookHeader.xib */; };
@@ -81,13 +84,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		100698A223EE8576005CAF59 /* BrokenNoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrokenNoteCell.swift; sourceTree = "<group>"; };
+		100698A323EE8576005CAF59 /* BrokenNoteCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BrokenNoteCell.xib; sourceTree = "<group>"; };
+		100698A723EE8832005CAF59 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		100698AD23EE9085005CAF59 /* ProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
+		100698AF23F08805005CAF59 /* TransparentNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentNavigationController.swift; sourceTree = "<group>"; };
 		29831A245AC2A9065E030E2D /* Pods-Prynote.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Prynote.debug.xcconfig"; path = "Target Support Files/Pods-Prynote/Pods-Prynote.debug.xcconfig"; sourceTree = "<group>"; };
 		58C9EF9F630BBAFC251E767C /* Pods_Prynote.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Prynote.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C91D92FCFAD79161F1BF8F3 /* Pods-Prynote.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Prynote.release.xcconfig"; path = "Target Support Files/Pods-Prynote/Pods-Prynote.release.xcconfig"; sourceTree = "<group>"; };
 		8E0CFFF523EE4138004692C2 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		8E2321FE23EC97DF00E65B2A /* Prynote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Prynote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E23220123EC97DF00E65B2A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8E23220323EC97DF00E65B2A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8E23220623EC97DF00E65B2A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8E23220823EC97E400E65B2A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8E23220B23EC97E400E65B2A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -123,7 +130,6 @@
 		8E23223623EC9F5D00E65B2A /* NoteCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoteCell.xib; sourceTree = "<group>"; };
 		8E23223723EC9F5D00E65B2A /* NotebookCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotebookCell.xib; sourceTree = "<group>"; };
 		8E23223823EC9F5D00E65B2A /* NotebookCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotebookCell.swift; sourceTree = "<group>"; };
-		8E23223923EC9F5D00E65B2A /* Custom.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = Custom.zip; sourceTree = "<group>"; };
 		8E23223C23EC9F5D00E65B2A /* TYButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TYButton.swift; sourceTree = "<group>"; };
 		8E23223E23EC9F5D00E65B2A /* NotebookHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotebookHeader.swift; sourceTree = "<group>"; };
 		8E23223F23EC9F5D00E65B2A /* NotebookHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotebookHeader.xib; sourceTree = "<group>"; };
@@ -170,6 +176,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		100698A623EE8822005CAF59 /* ProfileViewController */ = {
+			isa = PBXGroup;
+			children = (
+				100698A723EE8832005CAF59 /* ProfileViewController.swift */,
+				100698AD23EE9085005CAF59 /* ProfileViewController.xib */,
+			);
+			path = ProfileViewController;
+			sourceTree = "<group>";
+		};
 		78188290280DCAA4D34FD95C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -206,7 +221,6 @@
 				8E23221323EC9F5C00E65B2A /* Model */,
 				8E23223323EC9F5D00E65B2A /* View */,
 				8E23220123EC97DF00E65B2A /* AppDelegate.swift */,
-				8E23220323EC97DF00E65B2A /* ViewController.swift */,
 				8E0CFFF523EE4138004692C2 /* R.generated.swift */,
 				8E23220523EC97DF00E65B2A /* Main.storyboard */,
 				8E23220823EC97E400E65B2A /* Assets.xcassets */,
@@ -276,7 +290,6 @@
 			isa = PBXGroup;
 			children = (
 				8E23223423EC9F5D00E65B2A /* Cell */,
-				8E23223923EC9F5D00E65B2A /* Custom.zip */,
 				8E23223A23EC9F5D00E65B2A /* Custom */,
 			);
 			path = View;
@@ -289,6 +302,8 @@
 				8E23223623EC9F5D00E65B2A /* NoteCell.xib */,
 				8E23223723EC9F5D00E65B2A /* NotebookCell.xib */,
 				8E23223823EC9F5D00E65B2A /* NotebookCell.swift */,
+				100698A223EE8576005CAF59 /* BrokenNoteCell.swift */,
+				100698A323EE8576005CAF59 /* BrokenNoteCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -365,7 +380,7 @@
 		8E23224F23EC9F5D00E65B2A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				8E23225023EC9F5D00E65B2A /* Note */,
+				100698A623EE8822005CAF59 /* ProfileViewController */,
 				8E23225123EC9F5D00E65B2A /* MasterController */,
 				8E23225423EC9F5D00E65B2A /* Notes */,
 				8E23225F23EC9F5D00E65B2A /* Placeholder */,
@@ -376,18 +391,12 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		8E23225023EC9F5D00E65B2A /* Note */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Note;
-			sourceTree = "<group>";
-		};
 		8E23225123EC9F5D00E65B2A /* MasterController */ = {
 			isa = PBXGroup;
 			children = (
 				8E23225223EC9F5D00E65B2A /* MasterController+StateCoordinatorDelegate.swift */,
 				8E23225323EC9F5D00E65B2A /* MasterController.swift */,
+				100698AF23F08805005CAF59 /* TransparentNavigationController.swift */,
 			);
 			path = MasterController;
 			sourceTree = "<group>";
@@ -520,11 +529,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				100698A523EE8576005CAF59 /* BrokenNoteCell.xib in Resources */,
 				8E23229E23EC9F5E00E65B2A /* countries in Resources */,
 				8E23229323EC9F5E00E65B2A /* NotebookHeader.xib in Resources */,
-				8E23229023EC9F5E00E65B2A /* Custom.zip in Resources */,
 				8E23220C23EC97E400E65B2A /* LaunchScreen.storyboard in Resources */,
 				8E2322A823EC9F5E00E65B2A /* PlaceholderViewController.xib in Resources */,
+				100698AE23EE9085005CAF59 /* ProfileViewController.xib in Resources */,
 				8E23220923EC97E400E65B2A /* Assets.xcassets in Resources */,
 				8E23229623EC9F5E00E65B2A /* NotebookSelectionView.xib in Resources */,
 				8E23228E23EC9F5E00E65B2A /* NotebookCell.xib in Resources */,
@@ -603,7 +613,6 @@
 			files = (
 				8E2322AC23EC9F5E00E65B2A /* NotebookViewController+datasource.swift in Sources */,
 				8E2322B123EC9F5E00E65B2A /* SettingViewController.swift in Sources */,
-				8E23220423EC97DF00E65B2A /* ViewController.swift in Sources */,
 				8E23229A23EC9F5E00E65B2A /* TYCodeTextField.swift in Sources */,
 				8E23229523EC9F5E00E65B2A /* EmptyFooterView.swift in Sources */,
 				8E23227B23EC9F5E00E65B2A /* PhoneNumber.swift in Sources */,
@@ -613,6 +622,7 @@
 				8E23227923EC9F5E00E65B2A /* util.swift in Sources */,
 				8E23220223EC97DF00E65B2A /* AppDelegate.swift in Sources */,
 				8E23227A23EC9F5E00E65B2A /* Keyboard.swift in Sources */,
+				100698A823EE8832005CAF59 /* ProfileViewController.swift in Sources */,
 				8E23229B23EC9F5E00E65B2A /* TYLabel.swift in Sources */,
 				8E23228823EC9F5E00E65B2A /* Double.swift in Sources */,
 				8E23228523EC9F5E00E65B2A /* UIButton+.swift in Sources */,
@@ -631,6 +641,7 @@
 				8E2322A523EC9F5E00E65B2A /* NotebookListController.swift in Sources */,
 				8E23228C23EC9F5E00E65B2A /* NoteCell.swift in Sources */,
 				8E23227723EC9F5E00E65B2A /* Note.swift in Sources */,
+				100698B023F08805005CAF59 /* TransparentNavigationController.swift in Sources */,
 				8E23228423EC9F5E00E65B2A /* UIViewController+.swift in Sources */,
 				8E2322AA23EC9F5E00E65B2A /* NotebookEditingController.swift in Sources */,
 				8E23229F23EC9F5E00E65B2A /* MasterController+StateCoordinatorDelegate.swift in Sources */,
@@ -660,6 +671,7 @@
 				8E23227123EC9F5E00E65B2A /* Constant.swift in Sources */,
 				8E2322AB23EC9F5E00E65B2A /* NotebookViewController+header.swift in Sources */,
 				8E2322AE23EC9F5E00E65B2A /* NotebookViewController+UITableViewDelegate.swift in Sources */,
+				100698A423EE8576005CAF59 /* BrokenNoteCell.swift in Sources */,
 				8E23227323EC9F5E00E65B2A /* NotesGroup.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -810,6 +822,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DKH5D278T8;
 				INFOPLIST_FILE = Prynote/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -829,6 +842,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DKH5D278T8;
 				INFOPLIST_FILE = Prynote/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

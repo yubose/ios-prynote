@@ -19,7 +19,8 @@ extension MasterController: StateCoordinatorDelegate {
         let navigation = primaryNav(rootSplit)
         
         if isHorizontallyRegular {
-            rootSplit.viewControllers = [navigation, editor]
+            let second = TransparentNavigationController(rootViewController: editor)
+            rootSplit.viewControllers = [navigation, second]
         } else {
             if navigation.topViewController is EditorViewController {
                 let vcs = Array(navigation.viewControllers.dropLast()) + [freshEditor(notebook: notebook, mode: .create)]
@@ -36,7 +37,8 @@ extension MasterController: StateCoordinatorDelegate {
             let editor = freshEditor(notebook: n.notebook, mode: .update(n))
             
             if isHorizontallyRegular {
-                rootSplit.viewControllers = [navigation, editor]
+                let second = TransparentNavigationController(rootViewController: editor)
+                rootSplit.viewControllers = [navigation, second]
             } else {
                 navigation.pushViewController(editor, animated: true)
             }

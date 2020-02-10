@@ -8,6 +8,7 @@
 
 import UIKit
 import AiTmedSDK
+import SideMenu
 
 class NotebookViewController: UITableViewController {
     let stateCoordinator: StateCoordinator
@@ -53,15 +54,15 @@ class NotebookViewController: UITableViewController {
     }
     
     @objc func didTapSetting() {
-        print(#function)
-        AiTmed.deleteUser { (result) in
-            switch result {
-            case .failure(let error):
-                print(error.localizedDescription)
-            case .success(_):
-                print("delete success!")
-            }
-        }
+        let profileController = ProfileViewController.freshProfileController()
+        profileController.navigationItem.rightBarButtonItem = UIBarButtonItem(image: R.image.arrow_right_circle(), style: .done, target: self, action: #selector(didTapRightItemInProile))
+        let profileMenu = SideMenuNavigationController(rootViewController: profileController)
+        profileMenu.leftSide = true
+        profileMenu.presentationStyle.backgroundColor = .white
+        profileMenu.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        profileMenu.navigationBar.shadowImage = UIImage()
+        profileMenu.navigationBar.isTranslucent = true
+        present(profileMenu, animated: true, completion: nil)
     }
     
     @objc func didTapAdd() {
@@ -80,6 +81,10 @@ class NotebookViewController: UITableViewController {
         
         asyncReloadIfNeeded(indexPath(of: .all))
         asyncReloadIfNeeded(indexPath(of: .single(notebook)))
+    }
+    
+    @objc func didTapRightItemInProile() {
+        dismiss(animated: true, completion: nil)
     }
 }
 

@@ -113,6 +113,7 @@ class EditorViewController: UIViewController {
                         self?.displayAutoDismissAlert(msg: error.message)
                     case .success(_):
                         DispatchQueue.main.async {
+                            self?.splitViewController?.preferredDisplayMode = .allVisible
                             self?.stateCoordinator.select(nil)
                         }
                     }
@@ -180,6 +181,12 @@ class EditorViewController: UIViewController {
             }
         }
     }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
+        toolbarItems = [trashItem, spaceItem, cameraItem, spaceItem, composeItem]
+    }
     
     private func save(completion: @escaping (Result<Note, PrynoteError>) -> Void) {
         let title = titleTextField.text ?? ""
@@ -206,6 +213,7 @@ class EditorViewController: UIViewController {
         //navigation bar
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.setRightBarButton(shareToItem, animated: false)
+        navigationController?.setToolbarHidden(false, animated: false)
         
         scrollView.backgroundColor = UIColor(patternImage: R.image.paper_light()!)
         let tap = UITapGestureRecognizer(target: self, action: #selector(didTapGesureRecognized))

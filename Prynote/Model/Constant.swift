@@ -16,6 +16,10 @@ enum Constant {
         static let PLACEHOLDER = "PLACEHOLDER"
         static let NOTEBOOKEDITINGNAVIGATION = "NOTEBOOKEDITINGNAVIGATION"
         static let NOTEBOOKLISTCELL = "NOTEBOOKLISTCELL"
+        static let BROKENNOTECELL = "BROKENNOTECELL"
+        
+        //storyboard id
+        static let PROFILEVIEWCONTROLLER = "PROFILEVIEWCONTROLLER"
     }
     
     enum Strings {

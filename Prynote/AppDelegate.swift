@@ -17,15 +17,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.makeKeyAndVisible()
         configureKeyboard()
-        configureRoot()
+        configureToStart()
         return true
     }
     
-    private func configureRoot() {
-        let starter = StartViewController(_title: "Everything is protected", image: UIImage(named: "icon"))
+    func configureToStart() {
+        let starter = StartViewController(_title: "Everything is protected", image: UIImage(named: "icon_80"))
         starter.delegate = self
         window?.rootViewController = starter
+    }
+    
+    func configureToMaster() {
+        window?.rootViewController = MasterController()
     }
     
     private func configureKeyboard() {
@@ -36,7 +42,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate: StarterDelegate {
     func userDidSucceedAuthenticate(vc: StartViewController, method: AuthenticateMethod) {
-        print("\(method)")
+        if method == .login {
+            Storage.default.retrieveNotebooks { (result) in
+                switch result {
+                case .failure(let error):
+                    DispatchQueue.main.async {
+                        self.window?.rootViewController?.displayAlert(title: error.message, msg: nil)
+                    }
+                case .success(_):
+                    DispatchQueue.main.async {
+                        self.window?.rootViewController = MasterController()
+                    }
+                }
+            }
+        } else {
+            window?.rootViewController = MasterController()
+        }
     }
 }
 
