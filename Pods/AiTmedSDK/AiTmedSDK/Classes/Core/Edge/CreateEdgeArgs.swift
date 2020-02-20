@@ -47,8 +47,8 @@ public class CreateEdgeArgs {
 public class UpdateEdgeArgs: CreateEdgeArgs {
     public let id: Data
     ///isEncrypt must be same as before
-    public init(id: Data, type: Int32, name: String, isEncrypt: Bool, bvid: Data? = nil, evid: Data? = nil) {
+    public init?(id: Data, type: Int32, name: String, isEncrypt: Bool, bvid: Data? = nil, evid: Data? = nil) {
         self.id = id
-        super.init(type: type, name: name, isEncrypt: isEncrypt, bvid: bvid, evid: evid)!
+        super.init(type: type, name: name, isEncrypt: isEncrypt, bvid: bvid, evid: evid)
     }
 }

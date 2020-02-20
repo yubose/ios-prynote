@@ -11,10 +11,11 @@ import PromiseKit
 
 public extension AiTmed {
     //MARK: - Note
-    static func addNote(folderID: Data, title: String, content: Data, isEncrypt: Bool, completion: @escaping (Swift.Result<_Note, AiTmedError>) -> Void) {
-        let isOnServer = content.isEmbedSatisfied
-        let isZipped = content.isZipSatisfied
-        let args = CreateDocumentArgs(title: title, content: content, applicationDataType: .data, mediaType: .plain, isEncrypt: isEncrypt, folderID: folderID, isOnServer: isOnServer, isZipped: isZipped)
+    static func addNote(notebookID: Data, title: String, content: Data, mediaType: MediaType, applicationDataType: ApplicationDataType, isEncrypt: Bool, completion: @escaping (Swift.Result<_Note, AiTmedError>) -> Void) {
+        let isZipped = isZipSatisified(for: content, mediaType: mediaType)
+        let isOnServer = isOnServerSatisfied(for: content)
+        
+        let args = CreateDocumentArgs(title: title, content: content, applicationDataType: applicationDataType, mediaType: mediaType, isEncrypt: isEncrypt, folderID: notebookID, isOnServer: isOnServer, isZipped: isZipped)
 
         firstly { () -> Promise<Document> in
             createDocument(args: args)
@@ -26,8 +27,12 @@ public extension AiTmed {
         }
     }
     
-    static func updateNote(id: Data, notebookID: Data, title: String, content: Data, isEncrypt: Bool, completion: @escaping (Swift.Result<_Note, AiTmedError>) -> Void) {
-        let args = UpdateDocumentArgs(id: id, title: title, content: content, applicationDataType: .data, mediaType: .plain, isEncrypt: isEncrypt, folderID: notebookID, isOnServer: true, isZipped: false)
+    static func updateNote(id: Data, notebookID: Data, title: String, content: Data, mediaType: MediaType, applicationDataType: ApplicationDataType, isEncrypt: Bool, completion: @escaping (Swift.Result<_Note, AiTmedError>) -> Void) {
+        let isZipped = isZipSatisified(for: content, mediaType: mediaType)
+        let isOnServer = isOnServerSatisfied(for: content)
+        
+        let args = UpdateDocumentArgs(id: id, title: title, content: content, applicationDataType: applicationDataType, mediaType: mediaType, isEncrypt: isEncrypt, folderID: notebookID, isOnServer: isOnServer, isZipped: isZipped)
+        
         firstly { () -> Promise<Document> in
             return updateDocument(args: args)
         }.done { (document) -> Void in
@@ -65,22 +70,19 @@ public extension AiTmed {
 
     //MARK: - Notebook
     static func addNotebook(title: String, isEncrypt: Bool, completion: @escaping (Swift.Result<_Notebook, AiTmedError>) -> Void) {
-        let type = AiTmedType.notebook
-        guard let name = [AiTmedNameKey.title: title].toJSON(),
-                let args = CreateEdgeArgs(type: type, name: name, isEncrypt: isEncrypt) else {
-            completion(.failure(.unkown))
-            return
-        }
-        
-        AiTmed.createEdge(args: args)
-        .done { (edge) in
-            guard let dict = edge.name.toJSONDict(), let title = dict["title"] as? String else {
-                completion(.failure(.unkown))
-                return
-            }
-            
+        firstly { () -> Promise<String> in
+            return [AiTmedNameKey.title: title].toJSON()
+        }.then { (name) -> Promise<Edge> in
+            let type = AiTmedType.notebook
+            let args = try CreateEdgeArgs(type: type, name: name, isEncrypt: isEncrypt).nilToThrow(AiTmedError.internalError(.encryptionFailed))
+            return AiTmed.createEdge(args: args)
+        }.then { (edge) -> Promise<_Notebook> in
+            let dict = try edge.name.toJSONDict().wait()
+            let title = dict["title"] as? String ?? ""
             let _notebook = _Notebook(id: edge.id, title: title, isEncrypt: isEncrypt, ctime:
-                edge.ctime, mtime: edge.mtime)
+            edge.ctime, mtime: edge.mtime)
+            return Promise<_Notebook>.value(_notebook)
+        }.done { (_notebook) in
             completion(.success(_notebook))
         }.catch { (error) in
             completion(.failure(error.toAiTmedError()))
@@ -88,23 +90,19 @@ public extension AiTmed {
     }
     
     static func updateNotebook(id: Data, title: String, isEncrypt: Bool, completion: @escaping (Swift.Result<_Notebook, AiTmedError>) -> Void) {
-        let type = AiTmedType.notebook
-        guard let name = [AiTmedNameKey.title: title].toJSON() else {
-            completion(.failure(.unkown))
-            return
-        }
-        
-        let args = UpdateEdgeArgs(id: id, type: type, name: name, isEncrypt: isEncrypt)
-        
-        AiTmed.updateEdge(args: args)
-        .done { (edge) in
-            guard let dict = edge.name.toJSONDict(), let title = dict["title"] as? String else {
-                completion(.failure(.unkown))
-                return
-            }
-            
-            let _notebook = _Notebook(id: edge.id, title: title, isEncrypt: !edge.besak.isEmpty, ctime:
-                edge.ctime, mtime: edge.mtime)
+        firstly { () -> Promise<String> in
+            return [AiTmedNameKey.title: title].toJSON()
+        }.then { (name) -> Promise<Edge> in
+            let type = AiTmedType.notebook
+            let args = try UpdateEdgeArgs(id: id, type: type, name: name, isEncrypt: isEncrypt).nilToThrow(AiTmedError.internalError(.encryptionFailed))
+            return AiTmed.updateEdge(args: args)
+        }.then { (edge) -> Promise<_Notebook> in
+            let dict = try edge.name.toJSONDict().wait()
+            let title = dict["title"] as? String ?? ""
+            let _notebook = _Notebook(id: edge.id, title: title, isEncrypt: isEncrypt, ctime:
+            edge.ctime, mtime: edge.mtime)
+            return Promise<_Notebook>.value(_notebook)
+        }.done { (_notebook) in
             completion(.success(_notebook))
         }.catch { (error) in
             completion(.failure(error.toAiTmedError()))
@@ -122,18 +120,15 @@ public extension AiTmed {
     }
     
     static func retrieveNotebooks(maxCount: Int32? = nil, completion: @escaping (Swift.Result<[_Notebook], AiTmedError>) -> Void) {
-        let type = AiTmedType.notebook
-        let args = RetrieveArgs(ids: [], xfname: "bvid", type: type, maxCount: maxCount)
-        
-        AiTmed.retrieveEdges(args: args)
-        .done { (edges) in
-            let _notebooks: [_Notebook] = edges.map {
-                var title = ""
-                if let dict = $0.name.toJSONDict(), let t = dict["title"] as? String {
-                    title = t
-                }
-                return _Notebook(id: $0.id, title: title, isEncrypt: !$0.besak.isEmpty, ctime: $0.ctime, mtime: $0.mtime)
-            }
+        firstly { () -> Promise<[Edge]> in
+            let type = AiTmedType.notebook
+            let args = RetrieveArgs(ids: [], xfname: "bvid", type: type, maxCount: maxCount)
+            return AiTmed.retrieveEdges(args: args)
+        }.mapValues { (edge) -> _Notebook in
+            let dict = try? edge.name.toJSONDict().wait()
+            let title = dict?["title"] as? String ?? ""
+            return _Notebook(id: edge.id, title: title, isEncrypt: !edge.besak.isEmpty, ctime: edge.ctime, mtime: edge.mtime)
+        }.done { (_notebooks) in
             completion(.success(_notebooks))
         }.catch { (error) in
             completion(.failure(error.toAiTmedError()))

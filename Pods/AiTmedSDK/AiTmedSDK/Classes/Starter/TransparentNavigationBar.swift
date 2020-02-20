@@ -16,7 +16,9 @@ class TransparentNavigationBar: UINavigationBar {
     }
     
     required init?(coder: NSCoder) {
-        fatalError()
+        super.init(coder: coder)
+        
+        customize()
     }
     
     private func customize() {

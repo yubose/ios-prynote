@@ -99,7 +99,7 @@ class NotebookEditingController: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         fatalError()
     }
-
+    
     //MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -142,7 +142,7 @@ class NotebookEditingController: UIViewController {
             
             switch result {
             case .failure(let error):
-                weakSelf.displayAutoDismissAlert(msg: error.message)
+                weakSelf.displayAutoDismissAlert(msg: "Update failed\nReason: \(error.msg)")
                 weakSelf.delegate?.notebookEditingControllerDidEditFail(weakSelf)
             case .success(_):
                 weakSelf.delegate?.notebookEditingControllerDidEditSuccess(weakSelf, notebook: weakSelf.notebook)
@@ -162,7 +162,7 @@ class NotebookEditingController: UIViewController {
             switch result {
             case .failure(let error):
                 weakSelf.delegate?.notebookEditingControllerDidCreateFail(weakSelf)
-                weakSelf.displayAutoDismissAlert(msg: error.message)
+                weakSelf.displayAutoDismissAlert(msg: "Create notebook failed\nReason: \(error.msg)")
             case .success(let n):
                 weakSelf.delegate?.notebookEditingControllerDidCreateSuccess(weakSelf, notebook: n)
                 DispatchQueue.main.async {
@@ -187,10 +187,10 @@ class NotebookEditingController: UIViewController {
     private func didEncryptionChange() {
         if isEncrypt {
             navigationItem.prompt = "Encrypted"
-            lockButton.setImage(R.image.lock(), for: .normal)
+            lockButton.setImage(R.image.lock_24(), for: .normal)
         } else {
             navigationItem.prompt = "Public"
-            lockButton.setImage(R.image.unlock(), for: .normal)
+            lockButton.setImage(R.image.unlock_24(), for: .normal)
         }
     }
     

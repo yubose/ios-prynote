@@ -20,13 +20,7 @@ public class AiTmed {
     let e = Encryption()
     ///GRPC wrapper layer
     let g = GRPC()
-    let grpcTimeout: TimeInterval = 15
-    let host = "testapi2.aitmed.com:443"
-    var client: Aitmed_Ecos_V1beta1_EcosAPIServiceClient
     static let shared = AiTmed()
-    init() {
-        client = Aitmed_Ecos_V1beta1_EcosAPIServiceClient(address: host, secure: true)
-        client.timeout = grpcTimeout
-    }
+    private init() {}
     var tmpJWT: String = ""
 }

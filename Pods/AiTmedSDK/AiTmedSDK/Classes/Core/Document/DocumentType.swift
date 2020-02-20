@@ -8,15 +8,15 @@
 
 import Foundation
 
-struct DocumentType: ExpressibleByIntegerLiteral {
-    typealias IntegerLiteralType = UInt32
-    var value: UInt32
+public struct DocumentType: ExpressibleByIntegerLiteral {
+    public typealias IntegerLiteralType = UInt32
+    public var value: UInt32
     
-    init(integerLiteral value: UInt32) {
+    public init(integerLiteral value: UInt32) {
         self.value = value
     }
     
-    init(value: UInt32) {
+    public init(value: UInt32) {
         self.value = value
     }
     
@@ -137,13 +137,17 @@ public enum MediaType: String {
     case plain = "text/plain"
     case html = "text/html"
     case json = "application/json"
+    case jpeg = "image/jpeg"
+    case png = "image/png"
     case other
     
     var kind: MediaTypeKind {
-        if rawValue.hasPrefix("text") {
+        if rawValue.hasPrefix("text/") {
             return .text
-        } else if rawValue.hasPrefix("application") {
+        } else if rawValue.hasPrefix("application/") {
             return .application
+        } else if rawValue.hasPrefix("image/") {
+            return .image
         } else {
             return .other
         }

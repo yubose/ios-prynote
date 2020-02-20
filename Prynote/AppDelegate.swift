@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         configureKeyboard()
         configureToStart()
-        return true
+         return true
     }
     
     func configureToStart() {
@@ -32,6 +32,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func configureToMaster() {
         window?.rootViewController = MasterController()
+    }
+    
+    func configureToLockScreen() {
+        let lockViewController = LockViewController.freshLockViewController()
+        window?.rootViewController = lockViewController
     }
     
     private func configureKeyboard() {
@@ -47,7 +52,7 @@ extension AppDelegate: StarterDelegate {
                 switch result {
                 case .failure(let error):
                     DispatchQueue.main.async {
-                        self.window?.rootViewController?.displayAlert(title: error.message, msg: nil)
+                        self.window?.rootViewController?.displayAlert(title: error.title, msg: error.msg)
                     }
                 case .success(_):
                     DispatchQueue.main.async {

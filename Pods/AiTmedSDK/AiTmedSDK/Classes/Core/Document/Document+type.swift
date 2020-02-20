@@ -8,18 +8,18 @@
 
 import PromiseKit
 public struct Document {
-    let id: Data
-    let folderID: Data
-    let title: String
-    let mediaType: MediaType
-    let ctime: Date
-    let mtime: Date
-    var content: Data
-    var isBroken = false
+    public let id: Data
+    public let folderID: Data
+    public let title: String
+    public let mediaType: MediaType
+    public let ctime: Date
+    public let mtime: Date
+    public var content: Data
+    public var isBroken = false
     //Reference - https://demo.codimd.org/ZV_6kJ4TQu2ExkraJgWTdw, 1 is true, 0 is false
-    let type: DocumentType
+    public let type: DocumentType
     
-    init(id: Data, folderID: Data, title: String, content: Data, isBroken: Bool, mediaType: MediaType, type: DocumentType, mtime: Int64, ctime: Int64) {
+    public init(id: Data, folderID: Data, title: String, content: Data, isBroken: Bool, mediaType: MediaType, type: DocumentType, mtime: Int64, ctime: Int64) {
         self.id = id
         self.folderID = folderID
         self.title = title

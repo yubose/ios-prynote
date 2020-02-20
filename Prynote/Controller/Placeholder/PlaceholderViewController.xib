@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <viewController storyboardIdentifier="PLACEHOLDER" id="EMN-an-EYx" customClass="PlaceholderViewController" customModule="Prynote3" customModuleProvider="target">
+        <viewController storyboardIdentifier="PLACEHOLDER" id="EMN-an-EYx" customClass="PlaceholderViewController" customModule="Prynote" customModuleProvider="target">
             <view key="view" contentMode="scaleToFill" id="vcq-op-KtV">
                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -23,18 +21,36 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XfF-Gs-tW0">
+                        <rect key="frame" x="19" y="56" width="32" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="32" id="VrS-mt-6An"/>
+                            <constraint firstAttribute="height" constant="32" id="omI-DD-LNY"/>
+                        </constraints>
+                        <state key="normal" image="arrow_back.png"/>
+                        <connections>
+                            <action selector="didBackButtonTapped:" destination="EMN-an-EYx" eventType="touchUpInside" id="rKl-rg-qc3"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstItem="TAC-c3-mpx" firstAttribute="trailing" secondItem="Lh3-f5-J2B" secondAttribute="trailing" id="1Jj-Ro-lUd"/>
                     <constraint firstItem="Lh3-f5-J2B" firstAttribute="leading" secondItem="TAC-c3-mpx" secondAttribute="leading" id="Txq-pb-CRW"/>
+                    <constraint firstItem="XfF-Gs-tW0" firstAttribute="leading" secondItem="TAC-c3-mpx" secondAttribute="leading" constant="19" id="sK4-vE-k3s"/>
+                    <constraint firstItem="XfF-Gs-tW0" firstAttribute="top" secondItem="TAC-c3-mpx" secondAttribute="top" constant="12" id="t5v-zW-dMq"/>
                     <constraint firstItem="Lh3-f5-J2B" firstAttribute="centerY" secondItem="vcq-op-KtV" secondAttribute="centerY" id="vrU-eI-OW4"/>
                 </constraints>
                 <viewLayoutGuide key="safeArea" id="TAC-c3-mpx"/>
             </view>
             <connections>
+                <outlet property="backButton" destination="XfF-Gs-tW0" id="oqx-Fc-7zd"/>
                 <outlet property="placeholderLabel" destination="Lh3-f5-J2B" id="mNB-o2-cyt"/>
             </connections>
+            <point key="canvasLocation" x="139" y="93"/>
         </viewController>
     </objects>
+    <resources>
+        <image name="arrow_back.png" width="24" height="24"/>
+    </resources>
 </document>

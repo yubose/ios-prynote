@@ -11,14 +11,27 @@ import AiTmedSDK
 
 class ProfileViewController: UIViewController {
     @IBAction func didTapRecognized(_ sender: UITapGestureRecognizer) {
-        displayAutoDismissAlert(msg: "Not implement yet")
+        guard let label = sender.view as? UILabel else { return }
+        let placeholder = PlaceholderViewController.initWithPlaceholder("No \(label.text ?? "") now...", backButtonHidden: false)
+        present(placeholder, animated: true, completion: nil)
+    }
+    
+    @IBAction func didTapSetting(_ sender: UITapGestureRecognizer) {
+        let setting = SettingViewController.freshSettingViewController()
+        present(setting, animated: true, completion: nil)
     }
     
     @IBAction func didTapLogout(_ sender: UIButton) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        
-        AiTmed.logout()
-        appDelegate.configureToStart()
+        self.displayAlert(title: "Log out?", msg: "If log out, verification code will be required for logging in", hasCancel: true, actionTitle: "Yes", style: .destructive) {
+            AiTmed.logout()
+            gotoStarter()
+        }
+    }
+    
+    @IBAction func didTapLock(_ sender: UIButton) {
+        dismiss(animated: true) {
+            gotoLockScreen()
+        }
     }
     
     static func freshProfileController() -> ProfileViewController {

@@ -8,6 +8,7 @@
 
 import UIKit
 import IQKeyboardManager
+import AiTmedSDK
 
 class EditorViewController: UIViewController {
     weak var backgroudImageView: UIImageView!
@@ -68,6 +69,10 @@ class EditorViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    deinit {
+        print("Editor deinit")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -110,7 +115,7 @@ class EditorViewController: UIViewController {
                     WaitingView.dismissOnWindow()
                     switch result {
                     case .failure(let error):
-                        self?.displayAutoDismissAlert(msg: error.message)
+                        self?.displayAutoDismissAlert(msg: "Delete failed\nReason: \(error.msg)")
                     case .success(_):
                         DispatchQueue.main.async {
                             self?.splitViewController?.preferredDisplayMode = .allVisible
@@ -138,7 +143,7 @@ class EditorViewController: UIViewController {
                         strongSelf.isLoading = false
                         switch result {
                         case .failure(let error):
-                            strongSelf.displayAutoDismissAlert(msg: error.message)
+                            strongSelf.displayAutoDismissAlert(msg: "Save failed\nReason: \(error.msg)")
                         case .success(let note):
                             strongSelf.isSaveNeeded = false
                             strongSelf.mode = .update(note)
@@ -172,7 +177,7 @@ class EditorViewController: UIViewController {
                 self?.isLoading = false
                 switch result {
                 case .failure(let error):
-                    self?.displayAutoDismissAlert(msg: error.message)
+                    self?.displayAutoDismissAlert(msg: "Save failed\nReason: \(error.msg)")
                 case .success(let note):
                     self?.isSaveNeeded = false
                     self?.mode = .update(note)
@@ -188,7 +193,7 @@ class EditorViewController: UIViewController {
         toolbarItems = [trashItem, spaceItem, cameraItem, spaceItem, composeItem]
     }
     
-    private func save(completion: @escaping (Result<Note, PrynoteError>) -> Void) {
+    private func save(completion: @escaping (Result<Note, AiTmedError>) -> Void) {
         let title = titleTextField.text ?? ""
         let content = contentTextView.text.data(using: .utf8) ?? Data()
         switch mode {

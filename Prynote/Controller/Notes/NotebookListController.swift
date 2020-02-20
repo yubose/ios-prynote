@@ -110,7 +110,7 @@ extension NotebookListController: UITableViewDataSource {
         cell.titleLabel?.text = notebook.title
         
         if notebook.isEncrypt {
-            cell.fixedImageView.image = R.image.lock()
+            cell.fixedImageView.image = R.image.lock_24()
         } else {
             cell.fixedImageView?.image = R.image.folder()
         }

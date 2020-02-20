@@ -128,7 +128,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 21 images.
+  /// This `R.image` struct is generated, and contains static references to 23 images.
   struct image {
     /// Image `add`.
     static let add = Rswift.ImageResource(bundle: R.hostingBundle, name: "add")
@@ -150,8 +150,10 @@ struct R: Rswift.Validatable {
     static let icon_80 = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_80")
     /// Image `icon`.
     static let icon = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon")
-    /// Image `lock`.
-    static let lock = Rswift.ImageResource(bundle: R.hostingBundle, name: "lock")
+    /// Image `lock_24`.
+    static let lock_24 = Rswift.ImageResource(bundle: R.hostingBundle, name: "lock_24")
+    /// Image `lock_80`.
+    static let lock_80 = Rswift.ImageResource(bundle: R.hostingBundle, name: "lock_80")
     /// Image `notebook`.
     static let notebook = Rswift.ImageResource(bundle: R.hostingBundle, name: "notebook")
     /// Image `option`.
@@ -166,8 +168,10 @@ struct R: Rswift.Validatable {
     static let setting = Rswift.ImageResource(bundle: R.hostingBundle, name: "setting")
     /// Image `share_to`.
     static let share_to = Rswift.ImageResource(bundle: R.hostingBundle, name: "share_to")
-    /// Image `unlock`.
-    static let unlock = Rswift.ImageResource(bundle: R.hostingBundle, name: "unlock")
+    /// Image `unlock_24`.
+    static let unlock_24 = Rswift.ImageResource(bundle: R.hostingBundle, name: "unlock_24")
+    /// Image `unlock_80`.
+    static let unlock_80 = Rswift.ImageResource(bundle: R.hostingBundle, name: "unlock_80")
     /// Image `user`.
     static let user = Rswift.ImageResource(bundle: R.hostingBundle, name: "user")
     /// Image `write`.
@@ -244,9 +248,16 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "lock", bundle: ..., traitCollection: ...)`
-    static func lock(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.lock, compatibleWith: traitCollection)
+    /// `UIImage(named: "lock_24", bundle: ..., traitCollection: ...)`
+    static func lock_24(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.lock_24, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "lock_80", bundle: ..., traitCollection: ...)`
+    static func lock_80(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.lock_80, compatibleWith: traitCollection)
     }
     #endif
 
@@ -300,9 +311,16 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "unlock", bundle: ..., traitCollection: ...)`
-    static func unlock(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.unlock, compatibleWith: traitCollection)
+    /// `UIImage(named: "unlock_24", bundle: ..., traitCollection: ...)`
+    static func unlock_24(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.unlock_24, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "unlock_80", bundle: ..., traitCollection: ...)`
+    static func unlock_80(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.unlock_80, compatibleWith: traitCollection)
     }
     #endif
 
@@ -323,10 +341,12 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.nib` struct is generated, and contains static references to 7 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 9 nibs.
   struct nib {
     /// Nib `BrokenNoteCell`.
     static let brokenNoteCell = _R.nib._BrokenNoteCell()
+    /// Nib `LockViewController`.
+    static let lockViewController = _R.nib._LockViewController()
     /// Nib `NoteCell`.
     static let noteCell = _R.nib._NoteCell()
     /// Nib `NotebookCell`.
@@ -339,12 +359,22 @@ struct R: Rswift.Validatable {
     static let placeholderViewController = _R.nib._PlaceholderViewController()
     /// Nib `ProfileViewController`.
     static let profileViewController = _R.nib._ProfileViewController()
+    /// Nib `SettingViewController`.
+    static let settingViewController = _R.nib._SettingViewController()
 
     #if os(iOS) || os(tvOS)
     /// `UINib(name: "BrokenNoteCell", in: bundle)`
     @available(*, deprecated, message: "Use UINib(resource: R.nib.brokenNoteCell) instead")
     static func brokenNoteCell(_: Void = ()) -> UIKit.UINib {
       return UIKit.UINib(resource: R.nib.brokenNoteCell)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UINib(name: "LockViewController", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.lockViewController) instead")
+    static func lockViewController(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.lockViewController)
     }
     #endif
 
@@ -396,8 +426,20 @@ struct R: Rswift.Validatable {
     }
     #endif
 
+    #if os(iOS) || os(tvOS)
+    /// `UINib(name: "SettingViewController", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.settingViewController) instead")
+    static func settingViewController(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.settingViewController)
+    }
+    #endif
+
     static func brokenNoteCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> BrokenNoteCell? {
       return R.nib.brokenNoteCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? BrokenNoteCell
+    }
+
+    static func lockViewController(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> LockViewController? {
+      return R.nib.lockViewController.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? LockViewController
     }
 
     static func noteCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> NoteCell? {
@@ -422,6 +464,10 @@ struct R: Rswift.Validatable {
 
     static func profileViewController(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> ProfileViewController? {
       return R.nib.profileViewController.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? ProfileViewController
+    }
+
+    static func settingViewController(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> SettingViewController? {
+      return R.nib.settingViewController.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? SettingViewController
     }
 
     fileprivate init() {}
@@ -463,10 +509,13 @@ struct _R: Rswift.Validatable {
   #if os(iOS) || os(tvOS)
   struct nib: Rswift.Validatable {
     static func validate() throws {
+      try _LockViewController.validate()
       try _NotebookCell.validate()
       try _NotebookHeader.validate()
       try _NotebookSelectionView.validate()
+      try _PlaceholderViewController.validate()
       try _ProfileViewController.validate()
+      try _SettingViewController.validate()
     }
 
     struct _BrokenNoteCell: Rswift.NibResourceType {
@@ -475,6 +524,24 @@ struct _R: Rswift.Validatable {
 
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> BrokenNoteCell? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? BrokenNoteCell
+      }
+
+      fileprivate init() {}
+    }
+
+    struct _LockViewController: Rswift.NibResourceType, Rswift.Validatable {
+      let bundle = R.hostingBundle
+      let name = "LockViewController"
+
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> LockViewController? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? LockViewController
+      }
+
+      static func validate() throws {
+        if UIKit.UIImage(named: "lock_80", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'lock_80' is used in nib 'LockViewController', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "unlock_80", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'unlock_80' is used in nib 'LockViewController', but couldn't be loaded.") }
+        if #available(iOS 11.0, tvOS 11.0, *) {
+        }
       }
 
       fileprivate init() {}
@@ -549,12 +616,18 @@ struct _R: Rswift.Validatable {
       fileprivate init() {}
     }
 
-    struct _PlaceholderViewController: Rswift.NibResourceType {
+    struct _PlaceholderViewController: Rswift.NibResourceType, Rswift.Validatable {
       let bundle = R.hostingBundle
       let name = "PlaceholderViewController"
 
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> PlaceholderViewController? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? PlaceholderViewController
+      }
+
+      static func validate() throws {
+        if UIKit.UIImage(named: "arrow_back.png", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'arrow_back.png' is used in nib 'PlaceholderViewController', but couldn't be loaded.") }
+        if #available(iOS 11.0, tvOS 11.0, *) {
+        }
       }
 
       fileprivate init() {}
@@ -577,8 +650,26 @@ struct _R: Rswift.Validatable {
       }
 
       static func validate() throws {
+        if UIKit.UIImage(named: "lock_24", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'lock_24' is used in nib 'ProfileViewController', but couldn't be loaded.") }
         if UIKit.UIImage(named: "setting", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'setting' is used in nib 'ProfileViewController', but couldn't be loaded.") }
         if UIKit.UIImage(named: "share_to", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'share_to' is used in nib 'ProfileViewController', but couldn't be loaded.") }
+        if #available(iOS 11.0, tvOS 11.0, *) {
+        }
+      }
+
+      fileprivate init() {}
+    }
+
+    struct _SettingViewController: Rswift.NibResourceType, Rswift.Validatable {
+      let bundle = R.hostingBundle
+      let name = "SettingViewController"
+
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> SettingViewController? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? SettingViewController
+      }
+
+      static func validate() throws {
+        if UIKit.UIImage(named: "arrow_back", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'arrow_back' is used in nib 'SettingViewController', but couldn't be loaded.") }
         if #available(iOS 11.0, tvOS 11.0, *) {
         }
       }

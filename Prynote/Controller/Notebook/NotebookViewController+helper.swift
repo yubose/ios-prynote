@@ -24,7 +24,7 @@ extension NotebookViewController {
         cell.titleLabel.text = group.title
         
         if case NotesGroup.single(let notebook) = group, notebook.isEncrypt {
-            cell.iconImageView.image = R.image.lock()
+            cell.iconImageView.image = R.image.lock_24()
         }
     }
     

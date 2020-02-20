@@ -37,12 +37,12 @@ class Note {
         self.ctime = ctime
     }
     
-    func update(title: String, content: Data, completion: @escaping (Result<Note, PrynoteError>) -> Void) {
-        AiTmed.updateNote(id: id, notebookID: notebook.id, title: title, content: content, isEncrypt: isEncrypt) { [weak self] result in
+    func update(title: String, content: Data, completion: @escaping (Result<Note, AiTmedError>) -> Void) {
+        AiTmed.updateNote(id: id, notebookID: notebook.id, title: title, content: content, mediaType: .plain, applicationDataType: .data, isEncrypt: isEncrypt) { [weak self] result in
             guard let strongSelf = self else { return }
             switch result {
             case .failure(let error):
-                completion(.failure(.unkown))
+                completion(.failure(error))
             case .success(let _note):
                 strongSelf.id = _note.id
                 strongSelf.title = _note.title

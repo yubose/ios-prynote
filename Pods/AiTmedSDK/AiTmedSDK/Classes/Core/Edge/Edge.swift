@@ -38,7 +38,7 @@ public extension AiTmed {
                                 guard let dict = edge.name.toJSONDict(),
                                         let phoneNumber = dict[AiTmedNameKey.phoneNumber.rawValue] as? String,
                                         let credential = Credential(json: edge.deat, for: phoneNumber) else {
-                                            resolver.reject(AiTmedError.unkown)
+                                            resolver.reject(AiTmedError.internalError(.dataCorrupted))
                                             return
                                 }
                                 credential.save()
@@ -72,7 +72,7 @@ public extension AiTmed {
                 return
             }
             
-            shared.g.retreiveEdges(args: args, jwt: shared.c.jwt, completion: { (result) in
+            shared.g.retrieveEdges(args: args, jwt: shared.c.jwt, completion: { (result) in
                 switch result {
                 case .failure(let error):
                     resolver.reject(error)
@@ -99,7 +99,7 @@ public extension AiTmed {
                 return when(fulfilled: deletePromises)
             }).then({ (_) -> Promise<Void> in
                 DispatchQueue.global().async(.promise, execute: { () -> Void in
-                    let (_, jwt) = try shared.g.delete(ids: [args.id], jwt: shared.c.jwt)
+                    let (_, jwt) = try shared.g.delete(ids: [args.id], jwt: shared.c.jwt).wait()
                     shared.c.jwt = jwt
                 })
             }).done({ (_) in

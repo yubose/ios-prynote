@@ -26,12 +26,12 @@ class Notebook {
         self.mtime = _notebook.mtime
     }
     
-    func addNote(title: String, content: Data, completion: @escaping (Result<Note, PrynoteError>) -> Void) {
-        AiTmed.addNote(folderID: id, title: title, content: content, isEncrypt: isEncrypt) { [weak self] (result) in
+    func addNote(title: String, content: Data, completion: @escaping (Result<Note, AiTmedError>) -> Void) {
+        AiTmed.addNote(notebookID: id, title: title, content: content, mediaType: .plain, applicationDataType: .data, isEncrypt: isEncrypt) { [weak self] (result) in
             guard let strongSelf = self else { return }
             switch result {
             case .failure(let error):
-                completion(.failure(.unkown))
+                completion(.failure(error))
             case .success(let _note):
                 let note = Note(id: _note.id, notebook: strongSelf, isEncrypt: _note.isEncrypt, title: _note.title, content: _note.content, isBroken: _note.isBroken, mtime: _note.mtime, ctime: _note.ctime)
                 strongSelf.notes.insert(note, at: 0)
@@ -41,13 +41,13 @@ class Notebook {
         }
     }
     
-    func retrieveNotes(completion: @escaping (Result<Void, PrynoteError>) -> Void) {
+    func retrieveNotes(completion: @escaping (Result<Void, AiTmedError>) -> Void) {
         self.isReady = false
         AiTmed.retrieveNotes(notebookID: id) { (result) in
             self.isReady = true
             switch result {
             case .failure(let error):
-                completion(.failure(.unkown))
+                completion(.failure(error))
                 NotificationCenter.default.post(name: .didLoadAllNotesInNotebook, object: self)
             case .success(let _notes):
                 let notes = _notes.map {
@@ -60,11 +60,11 @@ class Notebook {
         }
     }
     
-    func deleteNote(id: Data, completion: @escaping (Result<Void, PrynoteError>) -> Void) {
+    func deleteNote(id: Data, completion: @escaping (Result<Void, AiTmedError>) -> Void) {
         AiTmed.deleteNote(id: id) { [weak self] (result) in
             switch result {
             case .failure(let error):
-                completion(.failure(.unkown))
+                completion(.failure(error))
             case .success(_):
                 self?.notes.removeAll(where: { $0.id == id })
                 NotificationCenter.default.post(name: .didRemoveNote, object: self)
@@ -73,11 +73,11 @@ class Notebook {
         }
     }
     
-    func update(title: String, completion: @escaping (Result<Void, PrynoteError>) -> Void) {
+    func update(title: String, completion: @escaping (Result<Void, AiTmedError>) -> Void) {
         AiTmed.updateNotebook(id: id, title: title, isEncrypt: isEncrypt) { (result) in
             switch result {
             case .failure(let error):
-                completion(.failure(.unkown))
+                completion(.failure(error))
             case .success(let _notebook):
                 self.title = _notebook.title
                 self.mtime = _notebook.mtime

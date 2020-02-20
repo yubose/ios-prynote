@@ -8,29 +8,29 @@
 import SwiftProtobuf
 
 public struct Vertex {
-    var ctime: Int64 = 0
+    public var ctime: Int64 = 0
     
-    var mtime: Int64 = 0
+    public var mtime: Int64 = 0
     
-    var atime: Int64 = 0
+    public var atime: Int64 = 0
     
-    var atimes: Int32 = 0
+    public var atimes: Int32 = 0
     
-    var tage: Int32 = 0
+    public var tage: Int32 = 0
     
-    var id: Data = SwiftProtobuf.Internal.emptyData
+    public var id: Data = SwiftProtobuf.Internal.emptyData
     
-    var type: Int32 = 0
+    public var type: Int32 = 0
     
-    var name: String = String()
+    public var name: String = String()
     
-    var deat: String = String()
+    public var deat: String = String()
     
-    var pk: Data = SwiftProtobuf.Internal.emptyData
+    public var pk: Data = SwiftProtobuf.Internal.emptyData
     
-    var esk: Data = SwiftProtobuf.Internal.emptyData
+    public var esk: Data = SwiftProtobuf.Internal.emptyData
     
-    var uid: String = String()
+    public var uid: String = String()
     
     init(v: Aitmed_Ecos_V1beta1_Vertex) {
         self.ctime = v.ctime
@@ -68,41 +68,41 @@ public struct Vertex {
 }
 
 public struct Edge {
-    var ctime: Int64 = 0
+    public var ctime: Int64 = 0
     
-    var mtime: Int64 = 0
+    public var mtime: Int64 = 0
     
-    var atime: Int64 = 0
+    public var atime: Int64 = 0
     
-    var atimes: Int32 = 0
+    public var atimes: Int32 = 0
     
-    var tage: Int32 = 0
+    public var tage: Int32 = 0
     
-    var id: Data = SwiftProtobuf.Internal.emptyData
+    public var id: Data = SwiftProtobuf.Internal.emptyData
     
-    var type: Int32 = 0
+    public var type: Int32 = 0
     
-    var name: String = String()
+    public var name: String = String()
     
-    var deat: String = String()
+    public var deat: String = String()
     
-    var subtype: Int32  = 0
+    public var subtype: Int32  = 0
     
-    var bvid: Data = SwiftProtobuf.Internal.emptyData
+    public var bvid: Data = SwiftProtobuf.Internal.emptyData
     
-    var evid: Data = SwiftProtobuf.Internal.emptyData
+    public var evid: Data = SwiftProtobuf.Internal.emptyData
     
-    var stime: Int64 = 0
+    public var stime: Int64 = 0
     
-    var etime: Int64 = 0
+    public var etime: Int64 = 0
     
-    var refid: Data = SwiftProtobuf.Internal.emptyData
+    public var refid: Data = SwiftProtobuf.Internal.emptyData
     
-    var besak: Data = SwiftProtobuf.Internal.emptyData
+    public var besak: Data = SwiftProtobuf.Internal.emptyData
     
-    var eesak: Data = SwiftProtobuf.Internal.emptyData
+    public var eesak: Data = SwiftProtobuf.Internal.emptyData
     
-    var sig: Data = SwiftProtobuf.Internal.emptyData
+    public var sig: Data = SwiftProtobuf.Internal.emptyData
     
     var unknownFields = SwiftProtobuf.UnknownStorage()
     
@@ -156,33 +156,33 @@ public struct Edge {
 }
 
 public struct Doc {
-    var ctime: Int64 = 0
+    public var ctime: Int64 = 0
     
-    var mtime: Int64 = 0
+    public var mtime: Int64 = 0
     
-    var atime: Int64 = 0
+    public var atime: Int64 = 0
     
-    var atimes: Int32 = 0
+    public var atimes: Int32 = 0
     
-    var tage: Int32 = 0
+    public var tage: Int32 = 0
     
-    var id: Data = SwiftProtobuf.Internal.emptyData
+    public var id: Data = SwiftProtobuf.Internal.emptyData
     
-    var type: Int32 = 0
+    public var type: Int32 = 0
     
-    var name: String = String()
+    public var name: String = String()
     
-    var deat: String = String()
+    public var deat: String = String()
     
-    var size: Int32 = 0
+    public var size: Int32 = 0
     
-    var fid: Data = SwiftProtobuf.Internal.emptyData
+    public var fid: Data = SwiftProtobuf.Internal.emptyData
     
-    var eid: Data = SwiftProtobuf.Internal.emptyData
+    public var eid: Data = SwiftProtobuf.Internal.emptyData
     
-    var bsig: Data = SwiftProtobuf.Internal.emptyData
+    public var bsig: Data = SwiftProtobuf.Internal.emptyData
     
-    var esig: Data = SwiftProtobuf.Internal.emptyData
+    public var esig: Data = SwiftProtobuf.Internal.emptyData
     
     var unknownFields = SwiftProtobuf.UnknownStorage()
     

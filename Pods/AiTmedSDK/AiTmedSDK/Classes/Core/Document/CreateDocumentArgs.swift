@@ -21,7 +21,7 @@ public class CreateDocumentArgs {
     let isExtraKeyNeeded: Bool
     let isEditable: Bool
     
-    init(title: String, content: Data, applicationDataType: ApplicationDataType, mediaType: MediaType, isEncrypt: Bool, folderID: Data, isOnServer: Bool, isZipped: Bool, isBinary: Bool = false, isExtraKeyNeeded: Bool = false, isEditable: Bool = true) {
+    public init(title: String, content: Data, applicationDataType: ApplicationDataType, mediaType: MediaType, isEncrypt: Bool, folderID: Data, isOnServer: Bool, isZipped: Bool, isBinary: Bool = false, isExtraKeyNeeded: Bool = false, isEditable: Bool = true) {
         self.title = title
         self.content = content
         self.applicationDataType = applicationDataType
@@ -39,7 +39,7 @@ public class CreateDocumentArgs {
 public class UpdateDocumentArgs: CreateDocumentArgs {
     let id: Data
 
-    init(id: Data, title: String, content: Data, applicationDataType: ApplicationDataType, mediaType: MediaType, isEncrypt: Bool, folderID: Data, isOnServer: Bool, isZipped: Bool, isBinary: Bool = false, isExtraKeyNeeded: Bool = false, isEditable: Bool = true) {
+    public init(id: Data, title: String, content: Data, applicationDataType: ApplicationDataType, mediaType: MediaType, isEncrypt: Bool, folderID: Data, isOnServer: Bool, isZipped: Bool, isBinary: Bool = false, isExtraKeyNeeded: Bool = false, isEditable: Bool = true) {
         self.id = id
         super.init(title: title, content: content, applicationDataType: applicationDataType, mediaType: mediaType, isEncrypt: isEncrypt, folderID: folderID, isOnServer: isOnServer, isZipped: isZipped)
     }

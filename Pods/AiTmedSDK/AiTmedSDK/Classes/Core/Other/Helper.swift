@@ -11,24 +11,6 @@ import PromiseKit
 import Alamofire
 
 extension AiTmed {
-    static func beskInEdge(_ id: Data) -> Swift.Result<Key?, AiTmedError> {
-        guard let edge = try? retrieveEdge(args: RetrieveSingleArgs(id: id)).wait() else { return .failure(AiTmedError.unkown)}
-        var besak: Key?
-        if !edge.besak.isEmpty {
-            besak = Key(edge.besak)
-        }
-        return .success(besak)
-    }
-    
-    static func eeskInEdge(_ id: Data) -> Swift.Result<Key?, AiTmedError> {
-        guard let edge = try? retrieveEdge(args: RetrieveSingleArgs(id: id)).wait() else { return .failure(AiTmedError.unkown)}
-        var eesak: Key?
-        if !edge.eesak.isEmpty {
-            eesak = Key(edge.eesak)
-        }
-        return .success(eesak)
-    }
-    
     //MARK: - Make sure each api call has permission
     func checkStatus() -> AiTmedError? {
         if let c = c {
@@ -60,7 +42,7 @@ extension AiTmed {
         return DispatchQueue.global().async(.promise) { () -> Key in
             let edge = try retrieveEdge(args: RetrieveSingleArgs(id: id)).wait()
             
-            guard !edge.besak.isEmpty else { throw AiTmedError.unkown }
+            guard !edge.besak.isEmpty else { throw AiTmedError.credentialFailed(.besakNil) }
             
             return Key(edge.besak)
         }
@@ -71,7 +53,7 @@ extension AiTmed {
             if let sak = shared.e.generateSAK(xesak: besak, sendPublicKey: sendPK, recvSecretKey: recvSK) {
                 resolver.fulfill(sak)
             } else {
-                resolver.reject(AiTmedError.unkown)
+                resolver.reject(AiTmedError.credentialFailed(.eesakNil))
             }
         }
     }
@@ -81,17 +63,17 @@ extension AiTmed {
             if let zipped = try? data.zip() {
                 resolver.fulfill(zipped)
             } else {
-                resolver.reject(AiTmedError.unkown)
+                resolver.reject(AiTmedError.internalError(.encryptionFailed))
             }
         }
     }
     
-    static func encrypt(_ data: Data, sak: Key) -> Promise<Data> {
+    static func encrypt(_ data: Data, key: Key) -> Promise<Data> {
         return Promise<Data> { resolver in
-            if let encryptedData = shared.e.sKeyEncrypt(secretKey: sak, data: [UInt8](data)) {
-                resolver.fulfill(Data(encryptedData))
+            if let encryptedData = shared.e.sKeyEncrypt(secretKey: key, data: data.bytes) {
+                resolver.fulfill(encryptedData.data)
             } else {
-                resolver.reject(AiTmedError.unkown)
+                resolver.reject(AiTmedError.internalError(.encryptionFailed))
             }
         }
     }
@@ -102,7 +84,7 @@ extension AiTmed {
                 guard let statusCode = response.response?.statusCode,
                     (200..<300).contains(statusCode) else {
                         
-                        resolver.reject(response.error ?? AiTmedError.unkown)
+                        resolver.reject(AiTmedError.apiResultFailed(.uploadFailed))
                         return
                 }
                 
@@ -116,63 +98,18 @@ extension AiTmed {
             Alamofire.download(url).responseData(completionHandler: { (response) in
                 guard let statusCode = response.response?.statusCode,
                     (200..<300).contains(statusCode) else {
-                        resolver.reject(response.error ?? AiTmedError.unkown)
+                        resolver.reject(AiTmedError.apiResultFailed(.downloadFailed))
                         return
                 }
                 
                 switch response.result {
                 case .failure(let error):
-                    resolver.reject(error)
+                    print(error.localizedDescription)
+                    resolver.reject(AiTmedError.apiResultFailed(.downloadFailed))
                 case .success(let data):
                     resolver.fulfill(data)
                 }
             })
-        }
-    }
-}
-
-extension StringProtocol {
-    func toJSONDict() -> Promise<[String: Any]> {
-        return Promise<[String: Any]> { resolver in
-            if let data = self.data(using: .utf8),
-                let dict = (try? JSONSerialization.jsonObject(with: data, options: [])) as? [String: Any] {
-                resolver.fulfill(dict)
-            } else {
-                resolver.reject(AiTmedError.unkown)
-            }
-        }
-    }
-}
-
-extension Dictionary where Key == AiTmedNameKey {
-    func toJSON() -> Promise<String> {
-        return Promise<String> { resolver in
-            var newDict: [String: Value] = [:]
-            for (key, value) in self {
-                newDict[key.rawValue] = value
-            }
-            
-            guard let data = try? JSONSerialization.data(withJSONObject: newDict, options: []),
-                    let json = String(bytes: data, encoding: .utf8) else {
-                resolver.reject(AiTmedError.unkown)
-                return
-            }
-            
-            resolver.fulfill(json)
-        }
-    }
-}
-
-extension Dictionary where Key == String {
-    func toJSON() -> Promise<String> {
-        return Promise<String> { resolver in
-            guard let data = try? JSONSerialization.data(withJSONObject: self, options: []),
-                let json = String(bytes: data, encoding: .utf8) else {
-                    resolver.reject(AiTmedError.unkown)
-                    return
-            }
-            
-            resolver.fulfill(json)
         }
     }
 }

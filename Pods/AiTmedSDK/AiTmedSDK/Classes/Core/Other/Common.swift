@@ -15,7 +15,7 @@ public class RetrieveArgs {
     var type: Int32?
     var maxCount: Int32?//if nil, no limitation on maxCount
     
-    init(ids: [Data], xfname: String, type: Int32? = nil, maxCount: Int32? = nil) {
+    public init(ids: [Data], xfname: String, type: Int32? = nil, maxCount: Int32? = nil) {
         self.ids = ids
         self.type = type
         self.maxCount = maxCount
@@ -24,7 +24,7 @@ public class RetrieveArgs {
 }
 
 public class RetrieveSingleArgs: RetrieveArgs {
-    init(id: Data, type: Int32? = nil) {
+    public init(id: Data, type: Int32? = nil) {
         super.init(ids: [id], xfname: "id", type: type, maxCount: nil)
     }
 }
@@ -32,4 +32,8 @@ public class RetrieveSingleArgs: RetrieveArgs {
 //MARK: - Delete
 public struct DeleteArgs {
     let id: Data
+    
+    init(id: Data) {
+        self.id = id
+    }
 }

@@ -63,7 +63,7 @@ extension NotesViewController {
                 guard let strongSelf = self else { return }
                 switch result {
                 case .failure(let error):
-                    strongSelf.displayAutoDismissAlert(msg: "Delete note failed")
+                    strongSelf.displayAutoDismissAlert(msg: "Delete note failed\nReason: \(error.msg)")
                 case .success(_):
                     DispatchQueue.main.async {
                         if strongSelf.isCurrentNoteDeleted(deletedID: note.id) {

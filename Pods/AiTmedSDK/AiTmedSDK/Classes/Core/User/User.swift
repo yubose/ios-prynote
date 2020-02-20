@@ -34,7 +34,7 @@ public extension AiTmed {
     //MARK: - async, retrieve credential
     static func retrieveCredential(args: RetrieveCredentialArgs, completion: @escaping (Swift.Result<Void, AiTmedError>) -> Void) {
         guard let name = [AiTmedNameKey.phoneNumber: args.phoneNumber, AiTmedNameKey.OPTCode: args.code].toJSON() else {
-            completion(.failure(.unkown))
+            completion(.failure(.internalError(.encodeNameFailed)))
             return
         }
         
@@ -101,27 +101,59 @@ public extension AiTmed {
         }
     }
     
-    //MARK: - Log out
-    static func logout() {
+    static func unlock(password: String, completion: @escaping (Swift.Result<Void, AiTmedError>) -> Void) {
+      //Is new device?
+      guard let _ = shared.c else {
+        completion(.failure(.credentialFailed(.credentialNeeded)))
+        return
+      }
+       
+        guard let sk = shared.e.generateSk(from: shared.c.esk, using: password) else { completion(.failure(AiTmedError.credentialFailed(.passwordWrong)))
+        return
+      }
+       
+      let arguments = CreateEdgeArgs(type: AiTmedType.login, name: "", isEncrypt: false, bvid: shared.c.userId, evid: nil)!
+       
+      firstly { () -> Promise<Edge> in
+        createEdge(args: arguments)
+      }.done({ (edge) in
+        shared.c.sk = sk
+        completion(.success(()))
+      }).catch({ (error) in
+        completion(.failure(error.toAiTmedError()))
+      })
+    }
+     
+    static func unlock(password: String) -> Promise<Void> {
+      return Promise<Void> { resolver in
+        unlock(password: password) { (result) in
+          switch result {
+          case .failure(let error):
+            resolver.reject(error)
+          case .success(_):
+            resolver.fulfill(())
+          }
+        }
+      }
+    }
+    
+    //MARK: - Log out and lock
+    ///keep credential, but clear sk. so that user can log in without OPT verification
+    static func lock() {
         shared.c?.sk = nil
     }
     
-    static func clearCredential() {
+    ///remove credential, OPT code required for login again
+    static func logout() {
         shared.c.clear()
         shared.c = nil
     }
     
     //MARK: - Create user
     static func createUser(args: CreateUserArgs, completion: @escaping (Swift.Result<Void, AiTmedError>) -> Void) {
-        guard Validator.password(args.password),
-            Validator.phoneNumber(args.phoneNumber) else {
-                completion(.failure(.unkown))
-                return
-        }
-        
         guard let keyPair = shared.e.generateAKey(),
             let esk = shared.e.generateESKey(from: keyPair.secretKey, using: args.password)?.toData() else {
-                completion(.failure(.unkown))
+                completion(.failure(.internalError(.encryptionFailed)))
                 return
         }
         
@@ -131,8 +163,15 @@ public extension AiTmed {
         
         firstly { () -> Promise<Vertex> in
             createVertex(args: arguments)
-        }.done { (edge) in
+        }.then { (vertex) -> Promise<Edge> in
             shared.c.sk = keyPair.secretKey
+            
+            let dict: [String: Any] = ["title": "root", "description": "", "edit_mode": 7]
+            let name = try dict.toJSON().wait()
+            let args = try CreateEdgeArgs(type: AiTmedType.root, name: name, isEncrypt: true).nilToThrow(AiTmedError.internalError(.encryptionFailed))
+                    
+            return createEdge(args: args)
+        }.done { (edge) in
             completion(.success(()))
         }.catch { (error) in
             completion(.failure(error.toAiTmedError()))
@@ -163,12 +202,14 @@ public extension AiTmed {
             deleteVertex(args: DeleteArgs(id: shared.c.userId))
             }.done { (_) in
                 shared.c.clear()
+                shared.c = nil
                 completion(.success(()))
             }.catch { (error) in
                 completion(.failure(error.toAiTmedError()))
         }
     }
-    
+
+
     static func deleteUser() -> Promise<Void> {
         return Promise<Void> { resolver in
             deleteUser(completion: { (result) in
@@ -186,7 +227,7 @@ public extension AiTmed {
     static func sendOPTCode(args: SendOPTCodeArgs, completion: @escaping (Swift.Result<Void, AiTmedError>) -> Void) {
         guard let name = [AiTmedNameKey.phoneNumber: args.phoneNumber].toJSON(),
                 let args = CreateEdgeArgs(type: AiTmedType.sendOPTCode, name: name, isEncrypt: false) else {
-            completion(.failure(.unkown))
+                    completion(.failure(.internalError(.encodeNameFailed)))
             return
         }
         
@@ -211,4 +252,23 @@ public extension AiTmed {
             })
         }
     }
+    
+    static func sendOPTCodeWithCode(args: SendOPTCodeArgs) -> Promise<String> {
+        return Promise<String> { resolver in
+            guard let name = [AiTmedNameKey.phoneNumber: args.phoneNumber].toJSON(),
+                    let args = CreateEdgeArgs(type: AiTmedType.sendOPTCode, name: name, isEncrypt: false) else {
+                        resolver.reject(AiTmedError.internalError(.encodeNameFailed))
+                        return
+            }
+            
+            firstly { () -> Promise<Edge> in
+                createEdge(args: args)
+            }.done { (edge) in
+                resolver.fulfill(String(edge.tage))
+            }.catch { (error) in
+                resolver.reject(error.toAiTmedError())
+            }
+        }
+    }
+
 }

@@ -44,7 +44,7 @@ class NotebookViewController: UITableViewController {
             
             switch result {
             case .failure(let error):
-                weakSelf.displayAutoDismissAlert(msg: error.message)
+                weakSelf.displayAutoDismissAlert(msg: "Operation failed\nReason: \(error.msg)")
             case .success(_):
                 DispatchQueue.main.async {
                     weakSelf.tableView.reloadData()
@@ -87,4 +87,3 @@ class NotebookViewController: UITableViewController {
         dismiss(animated: true, completion: nil)
     }
 }
-

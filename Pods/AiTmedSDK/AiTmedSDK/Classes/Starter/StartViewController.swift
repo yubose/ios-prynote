@@ -137,43 +137,34 @@ public class StartViewController: UIViewController {
                     let rcArgs = RetrieveCredentialArgs(phoneNumber: phoneNumber, code: code)//retrieve credential
                     do {
                         try AiTmed.retrieveCredential(args: rcArgs).wait()
-                        self.mode = .login
-                    } catch(let error) {
-                        guard let aitmedError = error as? AiTmedError else { throw StarterError.retriveCredentialFailed }
+                    } catch {
+                        guard let aitmederror = error as? AiTmedError else {
+                            throw StarterError.unkown
+                        }
                         
-                        switch aitmedError {
+                        switch aitmederror {
                         case .apiResultFailed(.userNotExist):
                             throw StarterError.userNotExist(code)
                         default:
-                            throw StarterError.retriveCredentialFailed
+                            throw error
                         }
                     }
+                    self.mode = .login
                 }
             }.catch(on: .main) { (error) in
-                if let starterError = error as? StarterError{
+                if let starterError = error as? StarterError {
                     switch starterError {
                     case .userCancelOPTCodeInput:
-                            break
+                        break
                     case .userNotExist(let code):
                         self.mode = .signin(code)
                     default:
                         self.displayAutoDismissAlert(msg: starterError.msg)
                     }
                 } else if let aitmedError = error as? AiTmedError {
-                    self.displayAutoDismissAlert(msg: aitmedError.localizedDescription)
+                    self.displayAutoDismissAlert(msg: aitmedError.msg)
                 } else {
-                    self.displayAutoDismissAlert(msg: "Unkown error")
-                }
-                
-                guard let starterError = error as? StarterError else { return }
-                switch starterError {
-                case .phoneNumberNotValid:
-                    self.displayAutoDismissAlert(msg: starterError.msg)
-                case .userCancelOPTCodeInput:
-                        break
-                case .userNotExist(let code):
-                    self.mode = .signin(code)
-                default:break
+                    self.displayAutoDismissAlert(msg: StarterError.unkown.msg)
                 }
             }
         case .login:
@@ -195,9 +186,9 @@ public class StartViewController: UIViewController {
                 if let starterError = error as? StarterError{
                     self.displayAutoDismissAlert(msg: starterError.msg)
                 } else if let aitmedError = error as? AiTmedError {
-                    self.displayAutoDismissAlert(msg: aitmedError.localizedDescription)
+                    self.displayAutoDismissAlert(msg: aitmedError.msg)
                 } else {
-                    self.displayAutoDismissAlert(msg: "Unkown error")
+                    self.displayAutoDismissAlert(msg: StarterError.unkown.msg)
                 }
             }).finally {
                 self.defroze()
@@ -224,9 +215,9 @@ public class StartViewController: UIViewController {
                 if let starterError = error as? StarterError{
                     self.displayAutoDismissAlert(msg: starterError.msg)
                 } else if let aitmedError = error as? AiTmedError {
-                    self.displayAutoDismissAlert(msg: aitmedError.localizedDescription)
+                    self.displayAutoDismissAlert(msg: aitmedError.msg)
                 } else {
-                    self.displayAutoDismissAlert(msg: "Unkown error")
+                    self.displayAutoDismissAlert(msg: StarterError.unkown.msg)
                 }
             }.finally {
                 self.defroze()
@@ -386,7 +377,7 @@ public class StartViewController: UIViewController {
     }
     
     private func shrinkInputStack() -> Guarantee<Void> {
-        return UIView.animate(.promise, duration: 0.35) {
+        UIView.animate(.promise, duration: 0.35) {
             self.passwordTF.isHidden = true
             self.passwordTF.alpha = 0
             self.inputStackView.layoutIfNeeded()
@@ -595,12 +586,12 @@ public class StartViewController: UIViewController {
         
         phoneNumberTF.snp.makeConstraints { (make) in
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(60)
+            make.height.equalTo(60).priority(999)
         }
         
         passwordTF.snp.makeConstraints { (make) in
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(60)
+            make.height.equalTo(60).priority(999)
         }
         
         continueButton.snp.makeConstraints { (make) in

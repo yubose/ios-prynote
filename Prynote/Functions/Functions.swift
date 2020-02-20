@@ -39,3 +39,18 @@ func getVisibleViewController(_ rootViewController: UIViewController? = nil) -> 
 func getRootViewController() -> UIViewController? {
     return UIApplication.shared.keyWindow?.rootViewController
 }
+
+func gotoStarter() {
+    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+    appDelegate.configureToStart()
+}
+
+func gotoMaster() {
+    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+    appDelegate.configureToMaster()
+}
+
+func gotoLockScreen() {
+    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+    appDelegate.configureToLockScreen()
+}

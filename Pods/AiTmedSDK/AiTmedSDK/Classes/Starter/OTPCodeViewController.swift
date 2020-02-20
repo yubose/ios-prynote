@@ -55,6 +55,12 @@ public class OPTCodeViewController: UIViewController {
         autoSendIfNeeded()
     }
     
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let _ = codeTextField.becomeFirstResponder()
+    }
+    
     //MARK: - Actions
     @objc func backButtonTapped() {
         failDismiss()

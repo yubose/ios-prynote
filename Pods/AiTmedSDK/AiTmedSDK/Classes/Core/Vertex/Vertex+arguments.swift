@@ -19,7 +19,7 @@ public class CreateVertexArgs {
     let esk: Data
     let sk: Data
     
-    init(type: Int32, tage: Int32, uid: String, pk: Data, esk: Data, sk: Data) {
+    public init(type: Int32, tage: Int32, uid: String, pk: Data, esk: Data, sk: Data) {
         self.type = type
         self.tage = tage
         self.uid = uid
@@ -33,7 +33,7 @@ public class CreateVertexArgs {
 public class UpdateVertexArgs: CreateVertexArgs {
     let id: Data//the id of this vertex
     
-    init(id: Data, type: Int32, tage: Int32, uid: String, pk: Data, esk: Data, sk: Data) {
+    public init(id: Data, type: Int32, tage: Int32, uid: String, pk: Data, esk: Data, sk: Data) {
         self.id = id
         super.init(type: type, tage: tage, uid: uid, pk: pk, esk: esk, sk: sk)
     }

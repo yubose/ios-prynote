@@ -15,12 +15,12 @@ class Storage {
     
     private init() {}
     
-    func retrieveNotebooks(completion: @escaping (Result<Void, PrynoteError>) -> Void) {
+    func retrieveNotebooks(completion: @escaping (Result<Void, AiTmedError>) -> Void) {
         AiTmed.retrieveNotebooks { [weak self] (result) in
             guard let weakSelf = self else { return }
             switch result {
             case .failure(let error):
-                completion(.failure(.unkown))
+                completion(.failure(error))
             case .success(let _notebooks):
                 weakSelf.notebooks = _notebooks.map { Notebook($0) }
                 weakSelf.sortByTitle()
@@ -29,7 +29,7 @@ class Storage {
                     notebook.retrieveNotes(completion: { (result) in
                         switch result {
                         case .failure(let error):
-                            print("retrieve notes failed")
+                            print("title: \(error.title), msg: \(error.msg)")
                         case .success(_):
                             print("retrieve notes success")
                         }
@@ -39,12 +39,12 @@ class Storage {
         }
     }
     
-    func addNotebook(title: String, isEncrypt: Bool, completion: @escaping (Result<Notebook, PrynoteError>) -> Void) {
+    func addNotebook(title: String, isEncrypt: Bool, completion: @escaping (Result<Notebook, AiTmedError>) -> Void) {
         AiTmed.addNotebook(title: title, isEncrypt: isEncrypt) { [weak self] (result) in
             guard let weakSelf = self else { return }
             switch result {
             case .failure(let error):
-                completion(.failure(.unkown))
+                completion(.failure(error))
             case .success(let _notebook):
                 let notebook = Notebook(_notebook)
                 weakSelf.notebooks.append(notebook)
@@ -54,11 +54,11 @@ class Storage {
         }
     }
     
-    func deleteNotebook(notebook: Notebook, completion: @escaping (Result<Void, PrynoteError>) -> Void) {
+    func deleteNotebook(notebook: Notebook, completion: @escaping (Result<Void, AiTmedError>) -> Void) {
         AiTmed.deleteNotebook(id: notebook.id) { (result) in
             switch result {
             case .failure(let error):
-                completion(.failure(.unkown))
+                completion(.failure(error))
             case .success(_):
                 self.notebooks.removeAll(where: { $0 === notebook })
                 completion(.success(()))

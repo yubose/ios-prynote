@@ -17,17 +17,14 @@ public extension AiTmed {
             var content = args.content
             
             let _ = try checkStatus().wait()//check status
-            print("before zip: ", [UInt8](args.content))
             if args.isZipped {//zip
                 content = try zip(args.content).wait()
-                print("create zipped:", [UInt8](content))
             }
             
             if args.isEncrypt {//encrypt
                 let besak = try besakInEdge(args.folderID).wait()
                 let sak = try getSak(besak: besak, sendPK: shared.c.pk, recvSK: shared.c.sk!).wait()
-                content = try encrypt(content, sak: sak).wait()
-                print("create encrypt:", [UInt8](args.content))
+                content = try encrypt(content, key: sak).wait()
             }
             
             if !args.isBinary {//base64
@@ -51,7 +48,7 @@ public extension AiTmed {
             _doc.type = Int32(type.value)
             _doc.eid = args.folderID
             _doc.size = Int32(content.count)
-            let (doc, jwt) = try shared.g.createDoc(doc: _doc, jwt: shared.c.jwt)
+            let (doc, jwt) = try shared.g.createDoc(doc: _doc, jwt: shared.c.jwt).wait()
             shared.c.jwt = jwt
             
             if !args.isOnServer {//if the data store on S3
@@ -59,7 +56,7 @@ public extension AiTmed {
                 guard let urlString = deat["url"] as? String,
                         let sig = deat["sig"] as? String,
                         let _ = deat["exptime"] as? String else {
-                        throw AiTmedError.unkown
+                            throw AiTmedError.internalError(.decodeDeatFailed)
                 }
                 
                 //compose upload url: 'url' + ? + 'sig'
@@ -76,7 +73,7 @@ public extension AiTmed {
     ///retrieve docs id
     static func retrieveDocs(args: RetrieveArgs) -> Promise<[Doc]> {
         return Promise<[Doc]> { resolver in
-            shared.g.retrieveDoc(args: args, jwt: shared.c.jwt, completion: { (result) in
+            shared.g.retrieveDocs(args: args, jwt: shared.c.jwt, completion: { (result) in
                 switch result {
                 case .failure(let error):
                     resolver.reject(error)
@@ -134,79 +131,6 @@ public extension AiTmed {
                     shared.c.jwt = jwt
                     resolver.fulfill(())
                 }
-            }
-        }
-    }
-}
-
-extension AiTmed {
-    ///transform arguments to Doc and processed data(if data not nil means it will be sent to S3)
-    ///Doc is used as parament in createDoc function
-    ///Data will upload to S3 if isOnServer is false
-    func transform(args: CreateDocumentArgs) -> Promise<(Doc, Data)> {
-        return Promise<(Doc, Data)> { resolver in
-            if let error = checkStatus() {
-                resolver.reject(error)
-                return
-            }
-            
-            var doc = Doc()
-            //firstly, check whether need zip
-            var data = args.content
-            
-            //compose name dict
-            var dict: [String: Any] = ["title": args.title, "type": args.mediaType.rawValue]
-            
-            DispatchQueue.global().async {
-                //if zip needed
-                if args.isZipped, let zipped = try? data.zip() {
-                    data = zipped
-                }
-                
-                //if encrypt, fetch besak
-                if args.isEncrypt {
-                    let result = AiTmed.beskInEdge(args.folderID)
-                    switch result {
-                    case .failure(let error):
-                        resolver.reject(error)
-                        return
-                    case .success(let _besak):
-                        if let besak = _besak,
-                            let sk = self.c.sk,
-                            let sak = self.e.generateSAK(xesak: besak, sendPublicKey: self.c.pk, recvSecretKey: sk),
-                            let encryptedData = self.e.sKeyEncrypt(secretKey: sak, data: [UInt8](data))  {
-                            data = Data(encryptedData)
-                            dict["data"] = data.base64EncodedString()
-                        } else {
-                            resolver.reject(AiTmedError.unkown)
-                            return
-                        }
-                    }
-                } else {
-                    if args.isOnServer {
-                        dict["data"] = data.base64EncodedString()
-                    }
-                }
-                
-                guard let name = dict.toJSON() else {
-                    resolver.reject(AiTmedError.unkown)
-                    return
-                }
-                
-                doc.name = name
-                doc.eid = args.folderID//the folder which doc store in
-                doc.size = Int32(data.count)//the size of content of doc
-                var type = DocumentType(value: 0)
-                type.isOnServer = args.isOnServer
-                type.isZipped = args.isZipped
-                type.isBinary = args.isBinary
-                type.isEncrypt = args.isEncrypt
-                type.isExtraKeyNeeded = args.isExtraKeyNeeded
-                type.isEditable = args.isEditable
-                type.applicationDataType = args.applicationDataType
-                type.mediaTypeKind = args.mediaType.kind
-                doc.type = Int32(type.value)
-                resolver.fulfill((doc, data))
             }
         }
     }
