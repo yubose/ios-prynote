@@ -31,11 +31,11 @@ enum NotesGroup {
     var notes: [Note] {
         switch self {
         case .all:
-            return Storage.default.notebooks.flatMap { $0.notes }
+            return Storage.default.notebooks.flatMap { $0.notes }.sorted(by: { $0.mtime > $1.mtime })
         case .sharedWithMe:
             return []
         case .single(let notebook):
-            return notebook.notes
+            return notebook.notes.sorted(by: { $0.mtime > $1.mtime })
         }
     }
     

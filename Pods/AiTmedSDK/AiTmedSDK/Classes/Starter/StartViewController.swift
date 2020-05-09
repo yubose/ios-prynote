@@ -94,6 +94,11 @@ public class StartViewController: UIViewController {
     private var changedInputStackConstraints: [Constraint] = []
     private var commonInputStackConstraints: [Constraint] = []
     
+    //update---------------------
+    private let testPhoneNumber = "+1 2137060313"
+    //update---------------------
+    
+    
     public weak var delegate: StarterDelegate?
     
     //MARK: - Initializations
@@ -256,6 +261,7 @@ public class StartViewController: UIViewController {
         }
     }
     
+    //update----------------------
     private func inputOPTCode() -> Promise<String> {
         return Promise<String> { [weak self] resovler in
             guard let strongSelf = self else {
@@ -264,16 +270,25 @@ public class StartViewController: UIViewController {
             }
             
             DispatchQueue.main.async {
-                let phoneNumber = strongSelf.phoneNumberTF.phoneNumber
-                let optCodeVC = OPTCodeViewController(phoneNumber: phoneNumber, autoSend: true, action: { (code) in
-                    resovler.fulfill(code)
-                }) {
-                    resovler.reject(StarterError.userCancelOPTCodeInput)
+                if strongSelf.phoneNumberTF.phoneNumber == strongSelf.testPhoneNumber {
+                    AiTmed.sendOPTCodeWithCode(args: SendOPTCodeArgs(phoneNumber: strongSelf.testPhoneNumber)).done { (code) in
+                        resovler.fulfill(code)
+                    }.catch { (error) in
+                        resovler.reject(error.toAiTmedError())
+                    }
+                } else {
+                    let phoneNumber = strongSelf.phoneNumberTF.phoneNumber
+                    let optCodeVC = OPTCodeViewController(phoneNumber: phoneNumber, autoSend: true, action: { (code) in
+                        resovler.fulfill(code)
+                    }) {
+                        resovler.reject(StarterError.userCancelOPTCodeInput)
+                    }
+                    strongSelf.present(optCodeVC, animated: true, completion: nil)
                 }
-                strongSelf.present(optCodeVC, animated: true, completion: nil)
             }
         }
     }
+    //update----------------------
     
     private func isPhoneNumberValid() -> Promise<Void> {
         return Promise<Void> { resovler in

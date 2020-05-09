@@ -10,8 +10,8 @@ import PromiseKit
 public struct Document {
     public let id: Data
     public let folderID: Data
-    public let title: String
-    public let mediaType: MediaType
+    public var title: String
+    public var mediaType: MediaType
     public let ctime: Date
     public let mtime: Date
     public var content: Data
@@ -31,11 +31,12 @@ public struct Document {
         self.ctime = Date(timeIntervalSince1970: TimeInterval(ctime))
     }
     
-    static func broken(id: Data, folderID: Data) -> Document {
-        return Document(id: id, folderID: folderID, title: "", content: Data(), isBroken: true, mediaType: .other, type: 0, mtime: 0, ctime: 0)
+    static func broken(id: Data, folderID: Data, mediaType: MediaType, type: DocumentType, mtime: Int64, ctime: Int64) -> Document {
+        return Document(id: id, folderID: folderID, title: "", content: Data(), isBroken: true, mediaType: mediaType, type: type, mtime: mtime, ctime: ctime)
     }
     
     //init document with returned Doc from server
+    //Updated
     static func initWithDoc(_ doc: Doc) -> Guarantee<Document> {
         
         return DispatchQueue.global().async(.promise) { () -> Document in
@@ -44,7 +45,7 @@ public struct Document {
             let ctime = doc.ctime
             let mtime = doc.mtime
             let type = DocumentType(value: UInt32(doc.type))
-            let brokenDocument = Document.broken(id: id, folderID: folderID)
+            var brokenDocument = Document.broken(id: id, folderID: folderID, mediaType: .other, type: type, mtime: mtime, ctime: ctime)
             
             guard let nameDict = doc.name.toJSONDict() else {
                 print(#function, #line)
@@ -56,6 +57,8 @@ public struct Document {
                 title = t
             }
             
+            brokenDocument.title = title
+            
             var mediaType: MediaType = .other
             if let mtRawValue = nameDict["type"] as? String,
                 let mt = MediaType(rawValue: mtRawValue) {
@@ -64,6 +67,8 @@ public struct Document {
                 print(#function, #line)
                 return brokenDocument
             }
+            
+            brokenDocument.mediaType = mediaType
             
             var content = Data()
             if type.isOnServer {
@@ -107,10 +112,7 @@ public struct Document {
                             print(#function, #line)
                             return brokenDocument
                     }
-                    
-                    print("retrieve encrypt:", [UInt8](content))
                     content = Data(decrypted)
-                    print("retrieve deencrypt:", [UInt8](content))
                 } catch {
                     print(#function, #line)
                     return brokenDocument
@@ -120,9 +122,7 @@ public struct Document {
             //unzip if needed
             if type.isZipped {
                 if let unzipped = try? content.unzip() {
-                    print("retrieve zip: ", [UInt8](content))
                     content = unzipped
-                    print("retrieve unzip: ", [UInt8](content))
                 } else {
                     print(#function, #line)
                     return brokenDocument
@@ -133,5 +133,7 @@ public struct Document {
         }
     }
 }
+
+
 
 

@@ -14,19 +14,13 @@ class Note {
     var id: Data
     unowned var notebook: Notebook
     var title: String = ""
-    var content: Data = Data()
+    var content: String = ""
     var ctime: Date = Date()
     var mtime: Date = Date()
     var isBroken = false
     var isEncrypt = false
-    var displayContent: String {
-        if isBroken {
-            return "Broken"
-        }
-        return String(data: content, encoding: .utf8) ?? ""
-    }
     
-    init(id: Data, notebook: Notebook, isEncrypt: Bool, title: String = "", content: Data = Data(), isBroken: Bool = false, mtime: Date = Date(), ctime: Date = Date()) {
+    init(id: Data, notebook: Notebook, isEncrypt: Bool, title: String = "", content: String = "", isBroken: Bool = false, mtime: Date = Date(), ctime: Date = Date()) {
         self.isEncrypt = isEncrypt
         self.id = id
         self.notebook = notebook
@@ -36,8 +30,12 @@ class Note {
         self.mtime = mtime
         self.ctime = ctime
     }
+        
+    deinit {
+        print("note-\(title) has deinit")
+    }
     
-    func update(title: String, content: Data, completion: @escaping (Result<Note, AiTmedError>) -> Void) {
+    func update(title: String, content: String, completion: @escaping (Result<Note, AiTmedError>) -> Void) {
         AiTmed.updateNote(id: id, notebookID: notebook.id, title: title, content: content, mediaType: .plain, applicationDataType: .data, isEncrypt: isEncrypt) { [weak self] result in
             guard let strongSelf = self else { return }
             switch result {

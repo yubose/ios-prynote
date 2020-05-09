@@ -26,7 +26,11 @@ class Notebook {
         self.mtime = _notebook.mtime
     }
     
-    func addNote(title: String, content: Data, completion: @escaping (Result<Note, AiTmedError>) -> Void) {
+    deinit {
+        print("notebook-\(title) has deinit")
+    }
+    
+    func addNote(title: String, content: String, completion: @escaping (Result<Note, AiTmedError>) -> Void) {
         AiTmed.addNote(notebookID: id, title: title, content: content, mediaType: .plain, applicationDataType: .data, isEncrypt: isEncrypt) { [weak self] (result) in
             guard let strongSelf = self else { return }
             switch result {
@@ -50,8 +54,8 @@ class Notebook {
                 completion(.failure(error))
                 NotificationCenter.default.post(name: .didLoadAllNotesInNotebook, object: self)
             case .success(let _notes):
-                let notes = _notes.map {
-                    Note(id: $0.id, notebook: self, isEncrypt: $0.isEncrypt, title: $0.title, content: $0.content, isBroken: $0.isBroken, mtime: $0.mtime, ctime: $0.ctime)
+                let notes = _notes.map { _n in
+                    return Note(id: _n.id, notebook: self, isEncrypt: _n.isEncrypt, title: _n.title, content: _n.content, isBroken: _n.isBroken, mtime: _n.mtime, ctime: _n.ctime)
                 }
                 self.notes = notes
                 NotificationCenter.default.post(name: .didLoadAllNotesInNotebook, object: self)

@@ -17,6 +17,9 @@
 		1055459E23FCBC6300250BC6 /* LockViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1055459C23FCBC6300250BC6 /* LockViewController.xib */; };
 		1066987923FDB4E000B2FDEE /* PrynoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1066987823FDB4E000B2FDEE /* PrynoteTests.swift */; };
 		1066988123FDC51100B2FDEE /* PasswordInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1066988023FDC51100B2FDEE /* PasswordInputView.swift */; };
+		1097B9652404A122007C6799 /* UpdatePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1097B9642404A122007C6799 /* UpdatePasswordViewController.swift */; };
+		1097B9672405F4E0007C6799 /* NotesViewController+UISearchResultsUpdating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1097B9662405F4E0007C6799 /* NotesViewController+UISearchResultsUpdating.swift */; };
+		10D8ED7923FF58CF00F95E3A /* Data+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D8ED7823FF58CF00F95E3A /* Data+.swift */; };
 		79BDAD15A219B5237712B581 /* Pods_Prynote.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58C9EF9F630BBAFC251E767C /* Pods_Prynote.framework */; };
 		8E0CFFF623EE4138004692C2 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0CFFF523EE4138004692C2 /* R.generated.swift */; };
 		8E23220223EC97DF00E65B2A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E23220123EC97DF00E65B2A /* AppDelegate.swift */; };
@@ -110,6 +113,9 @@
 		1066987823FDB4E000B2FDEE /* PrynoteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrynoteTests.swift; sourceTree = "<group>"; };
 		1066987A23FDB4E000B2FDEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1066988023FDC51100B2FDEE /* PasswordInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordInputView.swift; sourceTree = "<group>"; };
+		1097B9642404A122007C6799 /* UpdatePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePasswordViewController.swift; sourceTree = "<group>"; };
+		1097B9662405F4E0007C6799 /* NotesViewController+UISearchResultsUpdating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotesViewController+UISearchResultsUpdating.swift"; sourceTree = "<group>"; };
+		10D8ED7823FF58CF00F95E3A /* Data+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+.swift"; sourceTree = "<group>"; };
 		29831A245AC2A9065E030E2D /* Pods-Prynote.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Prynote.debug.xcconfig"; path = "Target Support Files/Pods-Prynote/Pods-Prynote.debug.xcconfig"; sourceTree = "<group>"; };
 		58C9EF9F630BBAFC251E767C /* Pods_Prynote.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Prynote.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C91D92FCFAD79161F1BF8F3 /* Pods-Prynote.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Prynote.release.xcconfig"; path = "Target Support Files/Pods-Prynote/Pods-Prynote.release.xcconfig"; sourceTree = "<group>"; };
@@ -206,6 +212,7 @@
 		100698A623EE8822005CAF59 /* ProfileViewController */ = {
 			isa = PBXGroup;
 			children = (
+				1097B9632404A0FE007C6799 /* UpdatePasswordViewController */,
 				100698A723EE8832005CAF59 /* ProfileViewController.swift */,
 				100698AD23EE9085005CAF59 /* ProfileViewController.xib */,
 			);
@@ -229,6 +236,14 @@
 				1066987A23FDB4E000B2FDEE /* Info.plist */,
 			);
 			path = PrynoteTests;
+			sourceTree = "<group>";
+		};
+		1097B9632404A0FE007C6799 /* UpdatePasswordViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1097B9642404A122007C6799 /* UpdatePasswordViewController.swift */,
+			);
+			path = UpdatePasswordViewController;
 			sourceTree = "<group>";
 		};
 		78188290280DCAA4D34FD95C /* Pods */ = {
@@ -318,6 +333,7 @@
 				8E23223023EC9F5D00E65B2A /* UIViewController+froze.swift */,
 				8E23223123EC9F5D00E65B2A /* Date+.swift */,
 				8E23223223EC9F5D00E65B2A /* UINavigationController.swift */,
+				10D8ED7823FF58CF00F95E3A /* Data+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -445,6 +461,7 @@
 			isa = PBXGroup;
 			children = (
 				8E23225523EC9F5D00E65B2A /* NotesViewController+.swift */,
+				1097B9662405F4E0007C6799 /* NotesViewController+UISearchResultsUpdating.swift */,
 				8E23225623EC9F5D00E65B2A /* NotesViewController.swift */,
 				8E23225723EC9F5D00E65B2A /* NotesViewController+Editor.swift */,
 				8E23225823EC9F5D00E65B2A /* NotesViewController+Helper.swift */,
@@ -703,6 +720,7 @@
 				8E23227223EC9F5E00E65B2A /* PrynoteError.swift in Sources */,
 				8E23227923EC9F5E00E65B2A /* util.swift in Sources */,
 				8E23220223EC97DF00E65B2A /* AppDelegate.swift in Sources */,
+				10D8ED7923FF58CF00F95E3A /* Data+.swift in Sources */,
 				8E23227A23EC9F5E00E65B2A /* Keyboard.swift in Sources */,
 				100698A823EE8832005CAF59 /* ProfileViewController.swift in Sources */,
 				8E23229B23EC9F5E00E65B2A /* TYLabel.swift in Sources */,
@@ -718,6 +736,7 @@
 				8E2322B023EC9F5E00E65B2A /* NotebookViewController.swift in Sources */,
 				8E2322B223EC9F5E00E65B2A /* EditorViewController.swift in Sources */,
 				8E23229423EC9F5E00E65B2A /* WaitingView.swift in Sources */,
+				1097B9672405F4E0007C6799 /* NotesViewController+UISearchResultsUpdating.swift in Sources */,
 				8E23227623EC9F5E00E65B2A /* Notebook.swift in Sources */,
 				8E2322A523EC9F5E00E65B2A /* NotebookListController.swift in Sources */,
 				8E23228C23EC9F5E00E65B2A /* NoteCell.swift in Sources */,
@@ -733,6 +752,7 @@
 				8E2322A023EC9F5E00E65B2A /* MasterController.swift in Sources */,
 				8E23228B23EC9F5E00E65B2A /* UINavigationController.swift in Sources */,
 				1066988123FDC51100B2FDEE /* PasswordInputView.swift in Sources */,
+				1097B9652404A122007C6799 /* UpdatePasswordViewController.swift in Sources */,
 				8E23229223EC9F5E00E65B2A /* NotebookHeader.swift in Sources */,
 				8E2322A223EC9F5E00E65B2A /* NotesViewController.swift in Sources */,
 				8E23228A23EC9F5E00E65B2A /* Date+.swift in Sources */,
@@ -960,7 +980,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AiTmed.Prynote;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -982,7 +1002,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AiTmed.Prynote;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

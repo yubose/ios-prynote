@@ -55,7 +55,7 @@ class NotebookEditingController: UIViewController {
             didLoadingChange()
         }
     }
-    private var isEncrypt: Bool = false {
+    private var isEncrypt: Bool = true {
         didSet {
             didEncryptionChange()
         }
@@ -110,6 +110,18 @@ class NotebookEditingController: UIViewController {
         populateUI()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let _ = textField.becomeFirstResponder()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        view.endEditing(true)
+    }
+    
     //MARK: - Helper
     private func populateUI() {
         view.backgroundColor = .white
@@ -130,7 +142,7 @@ class NotebookEditingController: UIViewController {
         } else {
             doneItem.isEnabled = false
             lockButton.isEnabled = true
-            isEncrypt = false
+            isEncrypt = true
         }
     }
     

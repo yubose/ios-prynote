@@ -70,13 +70,15 @@ public extension AiTmed {
             return
         }
         
+        shared.c = c
+        let arguments = CreateEdgeArgs(type: AiTmedType.login, name: "", isEncrypt: false, bvid: c.userId, evid: nil)!
+        
         guard let sk = shared.e.generateSk(from: c.esk, using: args.password) else {
             completion(.failure(AiTmedError.credentialFailed(.passwordWrong)))
             return
         }
         
-        shared.c = c
-        let arguments = CreateEdgeArgs(type: AiTmedType.login, name: "", isEncrypt: false, bvid: c.userId, evid: nil)!
+        
         
         firstly { () -> Promise<Edge> in
             createEdge(args: arguments)
@@ -89,53 +91,35 @@ public extension AiTmed {
     }
     
     static func login(args: LoginArgs) -> Promise<Void> {
-        return Promise<Void> { resovler in
-            login(args: args, completion: { (result) in
-                switch result {
-                case .failure(let error):
-                    resovler.reject(error)
-                case .success(_):
-                    resovler.fulfill(())
-                }
-            })
+        return DispatchQueue.global().async(.promise) { () -> Void in
+            let c = try Credential(phoneNumber: args.phoneNumber).nilToThrow(AiTmedError.credentialFailed(.credentialNeeded))
+            
+            shared.c = c
+            
+            let aeArgs = CreateEdgeArgs(type: AiTmedType.login, name: "", isEncrypt: false, bvid: c.userId, evid: nil)!
+            let _ = try createEdge(args: aeArgs).wait()
+            
+            let rsArgs = RetrieveSingleArgs(id: shared.c.userId)
+            let vertex = try retrieveVertex(args: rsArgs).wait()
+            
+            shared.c.update(esk: vertex.esk)
+            
+            let sk = try shared.e.generateSk(from: shared.c.esk, using: args.password).nilToThrow(AiTmedError.credentialFailed(.passwordWrong))
+            shared.c.sk = sk
         }
     }
-    
-    static func unlock(password: String, completion: @escaping (Swift.Result<Void, AiTmedError>) -> Void) {
-      //Is new device?
-      guard let _ = shared.c else {
-        completion(.failure(.credentialFailed(.credentialNeeded)))
-        return
-      }
-       
-        guard let sk = shared.e.generateSk(from: shared.c.esk, using: password) else { completion(.failure(AiTmedError.credentialFailed(.passwordWrong)))
-        return
-      }
-       
-      let arguments = CreateEdgeArgs(type: AiTmedType.login, name: "", isEncrypt: false, bvid: shared.c.userId, evid: nil)!
-       
-      firstly { () -> Promise<Edge> in
-        createEdge(args: arguments)
-      }.done({ (edge) in
-        shared.c.sk = sk
-        completion(.success(()))
-      }).catch({ (error) in
-        completion(.failure(error.toAiTmedError()))
-      })
-    }
-     
+
+    //updated----------------------
     static func unlock(password: String) -> Promise<Void> {
-      return Promise<Void> { resolver in
-        unlock(password: password) { (result) in
-          switch result {
-          case .failure(let error):
-            resolver.reject(error)
-          case .success(_):
-            resolver.fulfill(())
-          }
+        return DispatchQueue.global().async(.promise) { () -> Void in
+            guard let _ = shared.c else {
+                throw AiTmedError.credentialFailed(.credentialNeeded)
+            }
+            try login(args: LoginArgs(phoneNumber: shared.c.phoneNumber, password: password)).wait()
         }
-      }
+        
     }
+    //updated----------------------
     
     //MARK: - Log out and lock
     ///keep credential, but clear sk. so that user can log in without OPT verification
@@ -145,8 +129,10 @@ public extension AiTmed {
     
     ///remove credential, OPT code required for login again
     static func logout() {
-        shared.c.clear()
-        shared.c = nil
+        if let _ = shared.c {
+            shared.c.clear()
+            shared.c = nil
+        }
     }
     
     //MARK: - Create user
@@ -270,5 +256,31 @@ public extension AiTmed {
             }
         }
     }
-
+    
+    //MARK: - update password
+    static func updatePassword(_ password: String) -> Promise<Void> {
+        return DispatchQueue.global().async(.promise) { () -> Void in
+            //make sure user logged in
+            try AiTmed.checkStatus().wait()
+            
+            //generate new esk
+            let sk = shared.c.sk!
+            let newESK = shared.e.generateESKey(from: sk, using: password)
+            guard let esk = newESK else { throw AiTmedError.internalError(AiTmedError.InternalError.encryptionFailed)}
+            
+            //update vertex
+            let args = UpdateVertexArgs(id: shared.c.userId,
+                                        type: AiTmedType.user,
+                                        tage: 0,
+                                        uid: shared.c.phoneNumber,
+                                        pk: shared.c.pk.toData(),
+                                        esk: esk.toData(),
+                                        sk: shared.c.sk!.toData())
+            let vertex = try AiTmed.updateVertex(args: args).wait()
+            
+            //update local credential
+            shared.c.update(esk: vertex.esk)
+            return
+        }
+    }
 }

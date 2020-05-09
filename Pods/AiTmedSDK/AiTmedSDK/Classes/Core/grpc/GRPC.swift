@@ -223,6 +223,62 @@ class GRPC {
         }
     }
     
+    func retrieveVertex(args: RetrieveArgs, jwt: String, completion: @escaping (Swift.Result<([Vertex], String), AiTmedError>) -> Void) {
+        var request = Aitmed_Ecos_V1beta1_rxReq()
+        request.id = args.ids
+        request.objType = ObjectType.vertex.code
+        request.jwt = jwt
+        request.xfname = args.xfname
+        
+        if let type = args.type {
+            request.type = type
+        }
+        
+        if let maxCount = args.maxCount {
+            request.maxcount = maxCount
+        }
+        
+        print("retreive vertex request json: \n", (try? request.jsonString()) ?? "")
+        
+        do {
+            try client.rv(request) { [weak cache] (response, result) in
+                guard let response = response else {
+                    print("retrieve vertex has no response(\(result.statusCode)): \(result.description)")
+                    completion(.failure(.apiResultFailed(.apiNoResponse)))
+                    return
+                }
+                
+                print("retrieve vertex response: \n", (try? response.jsonString()) ?? "")
+                
+                if response.code == 0 {
+                    let v = response.vertex.map(Vertex.init)
+                    v.forEach { cache?[$0.id] = $0 }
+                    completion(.success((v, response.jwt)))
+                } else if response.code == 113 {
+                    completion(.failure(.credentialFailed(.JWTExpired(response.jwt))))
+                } else {
+                    completion(.failure(.apiResultFailed(.unkown(response.error))))
+                }
+            }
+        } catch {
+            print("grpc error: \(error.localizedDescription)")
+            completion(.failure(.grpcFailed(.unkown(error.localizedDescription))))
+        }
+    }
+    
+    func retrieveVertex(args: RetrieveArgs, jwt: String) -> Promise<([Vertex], String)> {
+        return Promise<([Vertex], String)> { resolver in
+            retrieveVertex(args: args, jwt: jwt) { (result) in
+                switch result {
+                case .failure(let error):
+                    resolver.reject(error)
+                case .success(let value):
+                    resolver.fulfill(value)
+                }
+            }
+        }
+    }
+    
     ///async, create doc
     func createDoc(doc: Doc, jwt: String, completion: @escaping (Swift.Result<(Doc, String), AiTmedError>) -> Void) {
         var request = Aitmed_Ecos_V1beta1_cdReq()

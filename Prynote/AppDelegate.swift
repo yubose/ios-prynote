@@ -47,6 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate: StarterDelegate {
     func userDidSucceedAuthenticate(vc: StartViewController, method: AuthenticateMethod) {
+        Storage.default.clear()
         if method == .login {
             Storage.default.retrieveNotebooks { (result) in
                 switch result {

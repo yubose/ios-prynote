@@ -12,6 +12,18 @@ class NotesViewController: UITableViewController {
     var group: NotesGroup
     var stateCoordinator: StateCoordinator
     
+    let searchController = UISearchController(searchResultsController: nil)
+    
+    var isSearchBarEmpty: Bool {
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    var isFiltering: Bool {
+        return searchController.isActive && !isSearchBarEmpty
+    }
+    
+    var filteredNotes: [Note] = []
+    
     private lazy var spaceItem = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
     private lazy var noteCountItem: UIBarButtonItem = {
         let label = UILabel()
@@ -101,6 +113,13 @@ class NotesViewController: UITableViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(didAddNote), name: .didAddNote, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(didUpdateNote), name: .didUpdateNote, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(didRemoveNote), name: .didRemoveNote, object: nil)
+        
+        //search controller
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search title"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
     }
     
     private func updateToolbar() {

@@ -24,6 +24,7 @@ class EditorViewController: UIViewController {
     lazy var cameraItem = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(didCameraItemTapped))
     lazy var composeItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(didComposeItemTapped))
     lazy var spaceItem = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+    lazy var backItem = UIBarButtonItem(image: R.image.arrow_back(), style: .done, target: self, action: #selector(didBackItemTapped))
     lazy var indicatorItem: UIBarButtonItem = {
         let indictor = UIActivityIndicatorView(style: .gray)
         indictor.hidesWhenStopped = true
@@ -96,6 +97,10 @@ class EditorViewController: UIViewController {
     }
     
     //MARK: - Action
+    @objc func didBackItemTapped() {
+        stateCoordinator.select(nil)
+    }
+    
     @objc func dismissItemTapped() {
         view.endEditing(true)
     }
@@ -195,7 +200,7 @@ class EditorViewController: UIViewController {
     
     private func save(completion: @escaping (Result<Note, AiTmedError>) -> Void) {
         let title = titleTextField.text ?? ""
-        let content = contentTextView.text.data(using: .utf8) ?? Data()
+        let content = contentTextView.text ?? ""
         switch mode {
         case .create:
             notebook.addNote(title: title, content: content, completion: completion)
@@ -218,6 +223,8 @@ class EditorViewController: UIViewController {
         //navigation bar
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.setRightBarButton(shareToItem, animated: false)
+        navigationItem.setHidesBackButton(true, animated: false)
+        navigationItem.setLeftBarButton(backItem, animated: false)
         navigationController?.setToolbarHidden(false, animated: false)
         
         scrollView.backgroundColor = UIColor(patternImage: R.image.paper_light()!)
@@ -282,17 +289,19 @@ class EditorViewController: UIViewController {
         
         toolbarItems = [trashItem, spaceItem, cameraItem, spaceItem, composeItem]
         
-        keyboard.observeKeyboardWillShow { (_) in
+        keyboard.observeKeyboardWillShow { [unowned self] (_) in
             self.navigationItem.setRightBarButtonItems([self.doneItem, self.shareToItem], animated: false)
         }
         
-        keyboard.observeKeyboardWillHide { (_) in
+        keyboard.observeKeyboardWillHide { [unowned self] (_) in
             self.navigationItem.setRightBarButtonItems([self.shareToItem], animated: false)
         }
         
         if case let .update(note) = mode {
             titleTextField.text = note.title
-            contentTextView.text = note.displayContent
+            DispatchQueue.main.async {
+                self.contentTextView.text = note.content
+            }
         }
     }
 }

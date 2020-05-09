@@ -30,6 +30,33 @@ extension Date {
         return String(month) + "/" + String(day) + "/" + String("\(year)".suffix(2))
     }
     
+    func elapseDateString() -> String {
+        guard self.timeIntervalSinceNow <= 0 else { return "" }
+        let elapse = abs(self.timeIntervalSinceNow)
+        switch elapse {
+        case ..<10:
+            return "just now"
+        case 10..<60:
+            return "less than 1 minute"
+        case 60..<3600:
+            return "\(Int(elapse/60)) minutes ago"
+        case 3600..<(3600 * 24):
+            let hours = Int(elapse/3600)
+            if hours == 1 {
+                return "\(hours) hour ago"
+            } else {
+                return "\(hours) hours ago"
+            }
+        default:
+            let days = Int(elapse/(3600 * 24))
+            if days == 1 {
+                return "\(days) day ago"
+            } else {
+                return "\(days) days ago"
+            }
+        }
+    }
+    
     init?(year: Int?, month: Int?, day: Int?, hour: Int?, min: Int?, sec: Int?) {
         
         guard let year = year, let month = month, let day = day, let hour = hour, let min = min, let sec = sec else { return nil }

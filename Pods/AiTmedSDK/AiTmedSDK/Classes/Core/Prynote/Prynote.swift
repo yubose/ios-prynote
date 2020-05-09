@@ -11,32 +11,57 @@ import PromiseKit
 
 public extension AiTmed {
     //MARK: - Note
-    static func addNote(notebookID: Data, title: String, content: Data, mediaType: MediaType, applicationDataType: ApplicationDataType, isEncrypt: Bool, completion: @escaping (Swift.Result<_Note, AiTmedError>) -> Void) {
-        let isZipped = isZipSatisified(for: content, mediaType: mediaType)
-        let isOnServer = isOnServerSatisfied(for: content)
+    //Updated
+    static func addNote(notebookID: Data, title: String, content: String, mediaType: MediaType, applicationDataType: ApplicationDataType, isEncrypt: Bool, completion: @escaping (Swift.Result<_Note, AiTmedError>) -> Void) {
+        guard let dataContent = content.data(using: .utf8) else {
+            completion(.failure(.internalError(.dataCorrupted)))
+            return
+        }
+
+        let isZipped = isZipSatisified(for: dataContent, mediaType: mediaType)
+        let isOnServer = isOnServerSatisfied(for: dataContent)
         
-        let args = CreateDocumentArgs(title: title, content: content, applicationDataType: applicationDataType, mediaType: mediaType, isEncrypt: isEncrypt, folderID: notebookID, isOnServer: isOnServer, isZipped: isZipped)
+        let args = CreateDocumentArgs(title: title, content: dataContent, applicationDataType: applicationDataType, mediaType: mediaType, isEncrypt: isEncrypt, folderID: notebookID, isOnServer: isOnServer, isZipped: isZipped)
 
         firstly { () -> Promise<Document> in
             createDocument(args: args)
         }.done { (document) in
-            let _note = _Note(id: document.id, title: document.title, content: document.content, mediaType: document.mediaType, isEncrypt: document.type.isEncrypt, ctime: document.ctime, mtime: document.mtime, isBroken: document.isBroken)
+            
+            guard let stringContent = String(bytes: document.content, encoding: .utf8) else {
+                completion(.failure(.internalError(.dataCorrupted)))
+                return
+            }
+            let _note = _Note(id: document.id, title: document.title, content: stringContent, mediaType: document.mediaType, isEncrypt: document.type.isEncrypt, ctime: document.ctime, mtime: document.mtime, isBroken: document.isBroken)
             completion(.success(_note))
         }.catch { (error) in
             completion(.failure(error.toAiTmedError()))
         }
     }
     
-    static func updateNote(id: Data, notebookID: Data, title: String, content: Data, mediaType: MediaType, applicationDataType: ApplicationDataType, isEncrypt: Bool, completion: @escaping (Swift.Result<_Note, AiTmedError>) -> Void) {
-        let isZipped = isZipSatisified(for: content, mediaType: mediaType)
-        let isOnServer = isOnServerSatisfied(for: content)
+    //Updated
+    static func updateNote(id: Data, notebookID: Data, title: String, content: String, mediaType: MediaType, applicationDataType: ApplicationDataType, isEncrypt: Bool, completion: @escaping (Swift.Result<_Note, AiTmedError>) -> Void) {
         
-        let args = UpdateDocumentArgs(id: id, title: title, content: content, applicationDataType: applicationDataType, mediaType: mediaType, isEncrypt: isEncrypt, folderID: notebookID, isOnServer: isOnServer, isZipped: isZipped)
+        guard let dataContent = content.data(using: .utf8) else {
+            completion(.failure(.internalError(.dataCorrupted)))
+            return
+        }
+        let isZipped = isZipSatisified(for: dataContent, mediaType: mediaType)
+        let isOnServer = isOnServerSatisfied(for: dataContent)
+        
+        
+        
+        
+        let args = UpdateDocumentArgs(id: id, title: title, content: dataContent, applicationDataType: applicationDataType, mediaType: mediaType, isEncrypt: isEncrypt, folderID: notebookID, isOnServer: isOnServer, isZipped: isZipped)
         
         firstly { () -> Promise<Document> in
             return updateDocument(args: args)
         }.done { (document) -> Void in
-            let _note = _Note(id: document.id, title: document.title, content: document.content, mediaType: document.mediaType, isEncrypt: document.type.isEncrypt, ctime: document.ctime, mtime: document.mtime, isBroken: document.isBroken)
+            guard let stringContent = String(bytes: document.content, encoding: .utf8) else {
+                completion(.failure(.internalError(.dataCorrupted)))
+                return
+            }
+            
+            let _note = _Note(id: document.id, title: document.title, content: stringContent, mediaType: document.mediaType, isEncrypt: document.type.isEncrypt, ctime: document.ctime, mtime: document.mtime, isBroken: document.isBroken)
             completion(.success(_note))
         }.catch { (error) in
             completion(.failure(error.toAiTmedError()))
@@ -53,14 +78,24 @@ public extension AiTmed {
         }
     }
     
+    //Updated
     static func retrieveNotes(notebookID: Data, completion: @escaping (Swift.Result<[_Note], AiTmedError>) -> Void) {
         let args = RetrieveArgs(ids: [notebookID], xfname: "eid")
         firstly {
             AiTmed.retrieveDocuments(args: args)
         }.map { (documents) -> [_Note] in
-            return documents.map {
-                _Note(id: $0.id, title: $0.title, content: $0.content, mediaType: $0.mediaType, isEncrypt: $0.type.isEncrypt, ctime: $0.ctime, mtime: $0.mtime, isBroken: $0.isBroken)
+            var _notes: [_Note] = []
+            
+            for document in documents {
+                guard let stringContent = String(bytes: document.content, encoding: .utf8) else {
+                    _notes.append(_Note(id: document.id, title: document.title, content: "", mediaType: document.mediaType, isEncrypt: document.type.isEncrypt, ctime: document.ctime, mtime: document.mtime, isBroken: true))
+                    continue
+                }
+                
+                _notes.append(_Note(id: document.id, title: document.title, content: stringContent, mediaType: document.mediaType, isEncrypt: document.type.isEncrypt, ctime: document.ctime, mtime: document.mtime, isBroken: document.isBroken))
             }
+            
+            return _notes
         }.done { (_notes) in
             completion(.success(_notes))
         }.catch { (error) in

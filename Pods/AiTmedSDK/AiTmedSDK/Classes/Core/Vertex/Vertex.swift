@@ -18,7 +18,8 @@ public extension AiTmed {
                 case .failure(let error):
                     resovler.reject(error)
                 case .success(let vertex):
-                    shared.g.createVertex(vertex: vertex, jwt: shared.tmpJWT, completion: { (result) in
+                    let j = shared.c?.jwt ?? shared.tmpJWT
+                    shared.g.createVertex(vertex: vertex, jwt: j, completion: { (result) in
                         switch result {
                         case .failure(let error):
                             resovler.reject(error)
@@ -63,9 +64,20 @@ public extension AiTmed {
         return createVertex(args: args)
     }
     
-    static func retrieveVertex(args: RetrieveSingleArgs, completion: @escaping (Swift.Result<Vertex, AiTmedError>) -> Void) {
-        //todo
-        fatalError()
+    //Retrieve vertexs
+    static func retrieveVertexs(args: RetrieveArgs) -> Promise<[Vertex]> {
+        return DispatchQueue.global().async(.promise) { () -> [Vertex] in            
+            let (vertexs, jwt) =  try shared.g.retrieveVertex(args: args, jwt: shared.c.jwt).wait()
+            
+            shared.c.jwt = jwt
+            
+            return vertexs
+        }
+    }
+    
+    //Retrieve single vertex
+    static func retrieveVertex(args: RetrieveSingleArgs) -> Promise<Vertex> {
+        return retrieveVertexs(args: args).firstValue
     }
 }
 

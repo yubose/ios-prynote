@@ -8,7 +8,7 @@ target 'Prynote' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
  pod 'Reveal-SDK', :configurations => ['Debug']
- pod 'AiTmedSDK', '~> 0.2.3'
+ pod 'AiTmedSDK', '~> 0.2.6'
  pod 'IQKeyboardManager'
  pod 'SnapKit'
  pod 'R.swift'

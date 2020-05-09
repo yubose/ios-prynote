@@ -15,6 +15,10 @@ class Storage {
     
     private init() {}
     
+    func clear() {
+        notebooks.removeAll()
+    }
+    
     func retrieveNotebooks(completion: @escaping (Result<Void, AiTmedError>) -> Void) {
         AiTmed.retrieveNotebooks { [weak self] (result) in
             guard let weakSelf = self else { return }

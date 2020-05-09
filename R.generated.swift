@@ -128,7 +128,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 23 images.
+  /// This `R.image` struct is generated, and contains static references to 24 images.
   struct image {
     /// Image `add`.
     static let add = Rswift.ImageResource(bundle: R.hostingBundle, name: "add")
@@ -162,6 +162,8 @@ struct R: Rswift.Validatable {
     static let paper_dark = Rswift.ImageResource(bundle: R.hostingBundle, name: "paper_dark")
     /// Image `paper_light`.
     static let paper_light = Rswift.ImageResource(bundle: R.hostingBundle, name: "paper_light")
+    /// Image `password`.
+    static let password = Rswift.ImageResource(bundle: R.hostingBundle, name: "password")
     /// Image `search`.
     static let search = Rswift.ImageResource(bundle: R.hostingBundle, name: "search")
     /// Image `setting`.
@@ -286,6 +288,13 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "paper_light", bundle: ..., traitCollection: ...)`
     static func paper_light(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.paper_light, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "password", bundle: ..., traitCollection: ...)`
+    static func password(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.password, compatibleWith: traitCollection)
     }
     #endif
 
@@ -641,6 +650,10 @@ struct _R: Rswift.Validatable {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? ProfileViewController
       }
 
+      func fourthView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[3] as? UIKit.UIView
+      }
+
       func secondView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[1] as? UIKit.UIView
       }
@@ -651,6 +664,7 @@ struct _R: Rswift.Validatable {
 
       static func validate() throws {
         if UIKit.UIImage(named: "lock_24", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'lock_24' is used in nib 'ProfileViewController', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "password", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'password' is used in nib 'ProfileViewController', but couldn't be loaded.") }
         if UIKit.UIImage(named: "setting", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'setting' is used in nib 'ProfileViewController', but couldn't be loaded.") }
         if UIKit.UIImage(named: "share_to", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'share_to' is used in nib 'ProfileViewController', but couldn't be loaded.") }
         if #available(iOS 11.0, tvOS 11.0, *) {

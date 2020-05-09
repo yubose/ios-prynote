@@ -12,7 +12,7 @@ public extension AiTmed {
     struct _Note {
         public var id: Data
         public var title: String
-        public var content: Data
+        public var content: String
         public var mediaType: MediaType
         public var isEncrypt: Bool
         public var ctime: Date = Date()

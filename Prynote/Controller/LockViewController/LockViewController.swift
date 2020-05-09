@@ -139,19 +139,19 @@ class LockViewController: UIViewController {
     }
     
     private func unlock(with password: String) {
-        AiTmed.unlock(password: password) { [weak self] result in
-            DispatchQueue.main.async {
-                switch result {
-                case .failure(let error):
-                    self?.passwordInputView.showError(error.msg)
-                case .success(_):
-                    self?.hidePasswordInputView()
-                    self?.lockImageView.isHighlighted = true
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                        gotoMaster()
-                    }
-                }
+        AiTmed.unlock(password: password).done(on: .main) { [weak self] (_) in
+            self?.hidePasswordInputView()
+            self?.lockImageView.isHighlighted = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
+                gotoMaster()
             }
+        }.catch(on: .main) { [weak self] (error) in
+            if let aitmederror = error as? AiTmedError {
+                self?.passwordInputView.showError(aitmederror.msg)
+            } else {
+                self?.passwordInputView.showError("unlock failed")
+            }
+            
         }
     }
 }

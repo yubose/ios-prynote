@@ -1,13 +1,13 @@
 PODS:
-  - AiTmedSDK (0.2.3):
-    - AiTmedSDK/Core (= 0.2.3)
-    - AiTmedSDK/Starter (= 0.2.3)
-  - AiTmedSDK/Core (0.2.3):
+  - AiTmedSDK (0.2.6):
+    - AiTmedSDK/Core (= 0.2.6)
+    - AiTmedSDK/Starter (= 0.2.6)
+  - AiTmedSDK/Core (0.2.6):
     - Alamofire (~> 4.9.1)
     - PromiseKit (~> 6.12.0)
     - Sodium (~> 0.8.0)
     - SwiftGRPC (~> 0.10.0)
-  - AiTmedSDK/Starter (0.2.3):
+  - AiTmedSDK/Starter (0.2.6):
     - AiTmedSDK/Core
     - TYTextField (~> 0.1.6)
   - Alamofire (4.9.1)
@@ -62,7 +62,7 @@ PODS:
     - SnapKit (~> 5.0.1)
 
 DEPENDENCIES:
-  - AiTmedSDK (~> 0.2.3)
+  - AiTmedSDK (~> 0.2.6)
   - IQKeyboardManager
   - R.swift
   - Reveal-SDK
@@ -91,7 +91,7 @@ SPEC REPOS:
     - AiTmedSDK
 
 SPEC CHECKSUMS:
-  AiTmedSDK: 0ca6a71a4869a25cc3a4b8e3244944cb97897526
+  AiTmedSDK: 5e7804b96a34d126cc34b133c2440c552f79f453
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   BoringSSL-GRPC: db8764df3204ccea016e1c8dd15d9a9ad63ff318
   gRPC-Core: 4b1148eb8596225178e5a154e40e35141a3cdf0f
@@ -109,6 +109,6 @@ SPEC CHECKSUMS:
   SwiftProtobuf: 4fd9645e69b72cbae6ec8da5be0cdd20ca6565dd
   TYTextField: 88dc202947e36d5a9c80ba90a693db9cebd31055
 
-PODFILE CHECKSUM: d79eecb72fd337c2e3f4a6872f59852b9a253883
+PODFILE CHECKSUM: ec87579603ee7f0d5a7c2267de42549c799a8642
 
 COCOAPODS: 1.8.4

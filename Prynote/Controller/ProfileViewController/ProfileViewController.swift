@@ -20,6 +20,11 @@ class ProfileViewController: UIViewController {
         let setting = SettingViewController.freshSettingViewController()
         present(setting, animated: true, completion: nil)
     }
+    @IBAction func didTapPassword(_ sender: UITapGestureRecognizer) {
+        let updatePasswordViewController = UpdatePasswordViewController()
+        let nav = UINavigationController(rootViewController: updatePasswordViewController)
+        present(nav, animated: true, completion: nil)
+    }
     
     @IBAction func didTapLogout(_ sender: UIButton) {
         self.displayAlert(title: "Log out?", msg: "If log out, verification code will be required for logging in", hasCancel: true, actionTitle: "Yes", style: .destructive) {

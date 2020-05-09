@@ -10,27 +10,40 @@ import UIKit
 
 extension NotesViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let note = group.notes[indexPath.row]
-        stateCoordinator.select(note)
+        let note: Note
+        
+        if isFiltering {
+            note = filteredNotes[indexPath.row]
+        } else {
+            note = group.notes[indexPath.row]
+        }
+        
+        if note.isBroken == true {
+            tableView.deselectRow(at: indexPath, animated: true)
+        } else {
+            stateCoordinator.select(note)
+        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
-        
-        return group.count
+        if isFiltering {
+            return filteredNotes.count
+        } else {
+            return group.count
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let note = group.notes[indexPath.row]
-        let cell: UITableViewCell
-        if note.isBroken {
-            cell = tableView.dequeueReusableCell(withIdentifier: Constant.Identifier.BROKENNOTECELL, for: indexPath) as! BrokenNoteCell
+        let note: Note
+        
+        if isFiltering {
+            note = filteredNotes[indexPath.row]
         } else {
-            let _cell = tableView.dequeueReusableCell(withIdentifier: Constant.Identifier.NOTECELL, for: indexPath) as! NoteCell
-            configure(_cell, with: note)
-            cell = _cell
+            note = group.notes[indexPath.row]
         }
         
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constant.Identifier.NOTECELL, for: indexPath) as! NoteCell
+        configure(cell, with: note)
         return cell
     }
     
@@ -43,8 +56,15 @@ extension NotesViewController {
     
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         if section == 0 {
-            let footer = EmptyFooterView(datasource: self)
-            return footer
+            if isFiltering {
+                let label = UILabel()
+                label.attributedText = NSAttributedString(string: "No note found", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 27, weight: .medium)])
+                label.textAlignment = .center
+                return label
+            } else {
+                let footer = EmptyFooterView(datasource: self)
+                return footer
+            }
         }
         
         return nil
@@ -56,7 +76,14 @@ extension NotesViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let note = group.notes[indexPath.row]
+            let note: Note
+            
+            if isFiltering {
+                note = filteredNotes[indexPath.row]
+            } else {
+                note = group.notes[indexPath.row]
+            }
+            
             WaitingView.scheduleDisplayOnWindow(delay: 0.5, msg: "Deleting...")
             note.notebook.deleteNote(id: note.id) { [weak self] (result) in
                 WaitingView.dismissOnWindow()
@@ -90,7 +117,13 @@ extension NotesViewController {
     
     private func configure(_ cell: NoteCell, with note: Note) {
         cell.titleLabel.text = note.title
-        cell.detailLabel.text = note.displayContent
-        cell.dateLabel.text = note.mtime.formattedDate
+        cell.dateLabel.text = note.mtime.elapseDateString()
+        
+        if note.isBroken {
+            cell.displayBrokenUI()
+        } else {
+            cell.displayNormalUI()
+            cell.detailLabel.text = note.content
+        }
     }
 }

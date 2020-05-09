@@ -13,7 +13,7 @@ struct Credential {
     
     let phoneNumber: String
     let pk: Key
-    let esk: Key
+    var esk: Key
     let userId: Data
     var jwt: String = "" {
         didSet {
@@ -84,6 +84,10 @@ struct Credential {
         defaults.removeObject(forKey: "jwt" + phoneNumber)
         defaults.removeObject(forKey: "userId" + phoneNumber)
         sk = nil
+    }
+    
+    mutating func update(esk: Data) {
+        self.esk = Key(esk)
     }
     
     enum Status {
