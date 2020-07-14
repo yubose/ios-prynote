@@ -50,7 +50,7 @@ PODS:
     - R.swift.Library (~> 5.1.0)
   - R.swift.Library (5.1.0)
   - Reveal-SDK (24)
-  - SideMenu (6.4.7)
+  - SideMenu (6.4.8)
   - SnapKit (5.0.1)
   - Sodium (0.8.0)
   - SwiftGRPC (0.10.0):
@@ -66,7 +66,7 @@ DEPENDENCIES:
   - IQKeyboardManager
   - R.swift
   - Reveal-SDK
-  - SideMenu
+  - SideMenu (~> 6.4.8)
   - SnapKit
 
 SPEC REPOS:
@@ -102,13 +102,13 @@ SPEC CHECKSUMS:
   R.swift: 8cbc4fc69b740305b6a17c8a8ed968eb788962d9
   R.swift.Library: fa85ce1e0d0b7e818cd9e080df910ba54d2776cc
   Reveal-SDK: 5d7e56b8f018c0a88b3a2c10bf68d598bbd3b071
-  SideMenu: 928a015669c3afc201e1fe3a87f1b0bc8993a664
+  SideMenu: 4a891be552d30bb6fa87ad404d62e485f8450c34
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   Sodium: 63c0ca312a932e6da481689537d4b35568841bdc
   SwiftGRPC: f8fcfecb547c96cc6913de619f95fa3cd09838ee
   SwiftProtobuf: 4fd9645e69b72cbae6ec8da5be0cdd20ca6565dd
   TYTextField: 88dc202947e36d5a9c80ba90a693db9cebd31055
 
-PODFILE CHECKSUM: ec87579603ee7f0d5a7c2267de42549c799a8642
+PODFILE CHECKSUM: d2ae60cb2bd48f3ec5fa29a5a67187338b5cfe26
 
 COCOAPODS: 1.8.4

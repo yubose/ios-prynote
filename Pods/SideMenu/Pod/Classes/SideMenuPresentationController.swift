@@ -182,7 +182,11 @@ internal final class SideMenuPresentationController {
 private extension SideMenuPresentationController {
 
     var statusBarFrame: CGRect {
-        return UIApplication.shared.statusBarFrame
+        if #available(iOS 13.0, *) {
+            return containerView.window?.windowScene?.statusBarManager?.statusBarFrame ?? .zero
+        } else {
+            return UIApplication.shared.statusBarFrame
+        }
     }
 
     var frameOfPresentedViewInContainerView: CGRect {

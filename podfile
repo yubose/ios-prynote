@@ -12,7 +12,7 @@ target 'Prynote' do
  pod 'IQKeyboardManager'
  pod 'SnapKit'
  pod 'R.swift'
- pod 'SideMenu'
+ pod 'SideMenu', '~> 6.4.8'
   # Pods for Prynote
 
 end
